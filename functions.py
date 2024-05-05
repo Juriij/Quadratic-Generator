@@ -27,14 +27,16 @@ class Expression:
         D_list = sp.solve(discriminant)
         sp.pprint(discriminant)
         print ("..................................................")
-
+        
         print("Calculation of x1: ")
-
+         
         x1 = sp.symbols("x1")
 
         show_solution1 = sp.Eq(x1, (-b -(sp.sqrt(D)))/(2*a))
         sp.pprint(show_solution1)
         solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*self.a))
+
+        print(f"x1 = {-self.b} -{(sp.sqrt(D_list[0]))}/2*a")
 
         show_solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*a))
         sp.pprint(show_solution1)
@@ -50,6 +52,8 @@ class Expression:
         show_solution2 = sp.Eq(x2, (-b +(sp.sqrt(D)))/(2*a))
         sp.pprint(show_solution2)
         solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
+
+        print(f"x2 = {-self.b} +{(sp.sqrt(D_list[0]))}/2*a")
 
         show_solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*a))
         sp.pprint(show_solution2)
@@ -158,96 +162,44 @@ class Expression:
 
 
 
-
-
 class Equation (Expression):
     def __init__(self,type):
         self.type = type
+    
 
+    def equation_genr(self):  
 
-
-    def EquationSetup(self):
+        self.x1 = random.choice([i for i in range(-20,20) if i not in [0]])   
 
         if self.type == "complete":
-            self.a = random.randint(1,5)
-            self.b = random.randint(-5,15)
-            self.c = random.randint(-150,150)
-
-
-            
-            if self.b == 0 or self.c == 0:
-                self.EquationSetup()
-
-            else:
-                self.EquationGenr()
-
-
+            self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]])  
 
         elif self.type == "incomplete":
-            self.excluded = random.choice(["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","c"])
+            if "b" == random.choice(["b", "c"]):
+                self.x2 = -self.x1
 
-            if self.excluded == "c":
-                self.a = random.randint(1,5)
-                self.b = random.randint(-5,15)
-                self.c = 0
-
-                if self.b == 0:
-                    self.EquationSetup()
-
-                else:
-                    self.EquationGenr()
+            else:                                    # c
+                self.x2 = 0
 
 
-                    
+        self.p = -self.x1
+        self.q = -self.x2
 
-            elif self.excluded == "b":
-                self.a = random.randint(1,5)
-                self.b = 0
-                self.c = random.randint(-50,50)
+        self.a = 1
+        self.b = self.p + self.q
+        self.c = self.p * self.q
 
-                if self.c == 0:
-                    self.EquationSetup()
-
-                else:
-                    self.EquationGenr()
-
-
-
-
-
-
-
-    def EquationGenr(self):
-
-        iscomplex = False
-        self.one_solution = False
+        if bool(random.getrandbits(1)):
+            self.a = random.choice([i for i in range(-5,5) if i not in [0,1]])
+            self.b = self.b * self.a
+            self.c = self.c * self.a
 
         x = sp.symbols("x")
         self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
-        self.solution = sp.solve(self.equation)
+        self.solution = (self.x1, self.x2)
 
 
 
-                            # regulation ---> filtering out 1.not-whole numbered roots
-                            #                               2.complex roots
-
-
-        for sol in self.solution:
-            if isinstance(sol, sp.Expr) and sol.has(sp.I):
-                iscomplex = True
-
-
-        if iscomplex:
-            self.EquationSetup()
-
-        else:
-            if len(self.solution) == 1:
-                self.one_solution = True
-
-            if not (int(self.solution[0]*10) == float(self.solution[0]*10) and (self.one_solution or int(self.solution[1]*10) == float(self.solution[1]*10))):
-                self.EquationSetup()
-
-                            # regulation
     
 
 
@@ -255,11 +207,7 @@ class Equation (Expression):
 
 
 
-
-
-
-
-
+################################ TO BE FINISHED #########################################
 
 class Inequality (Expression):
     def __init__(self):
