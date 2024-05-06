@@ -163,139 +163,112 @@ class Expression:
 
 
 class Equation (Expression):
-    def __init__(self,type):
+    def __init__(self, type):
         self.type = type
     
 
-    def equation_genr(self):  
-
-        self.x1 = random.choice([i for i in range(-20,20) if i not in [0]])   
-
-        if self.type == "complete":
-            self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]])  
-
-        elif self.type == "incomplete":
-            if "b" == random.choice(["b", "c"]):
-                self.x2 = -self.x1
-
-            else:                                    # c
-                self.x2 = 0
-
-
-        self.p = -self.x1
-        self.q = -self.x2
-
-        self.a = 1
-        self.b = self.p + self.q
-        self.c = self.p * self.q
-
-        if bool(random.getrandbits(1)):
-            self.a = random.choice([i for i in range(-5,5) if i not in [0,1]])
-            self.b = self.b * self.a
-            self.c = self.c * self.a
-
-        x = sp.symbols("x")
-        self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
-        self.solution = (self.x1, self.x2)
-
-
-
-    
-
-
-
-
-
-
-################################ TO BE FINISHED #########################################
-
-class Inequality (Expression):
-    def __init__(self):
-        pass
-
-    
-    def InequalitySetup(self):
-        self.a = random.randint(-5,5)
-        self.b = random.randint(-5,15)
-        self.c = random.randint(-150,150)
-
+    def equation_genr(self, complex_chance): 
         
-        if self.a == 0:
-            self.InequalitySetup()
+        ### 20% for a complex (so far only) inequality
 
-        else:
-            self.InequalityGenr()
+        if complex_chance and random.randint(1,5) == 1:
+            self.iscomplex = True
+
+            self.a = 0
+            self.b = 0
+            self.c = 0
+                                                      # retrospective by discriminant
+            while 4*self.a*self.c <= self.b**2:          
+                self.a = random.choice([i for i in range(-2,5) if i not in [0]]) 
+                self.b = random.choice([i for i in range(-15,15) if i not in [0]]) 
+                self.c = random.choice([i for i in range(-150,150) if i not in [0]]) 
+
+
+
+
+        ### 80% for a normal (so far only) inequality 
+                                                      # retrospective by factoring
+        else:       
+            self.x1 = random.choice([i for i in range(-20,20) if i not in [0]])   
+
+            try:
+                if self.type == "complete":
+                    self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]])  
+
+                elif self.type == "incomplete": 
+                    if "b" == random.choice(["b", "c"]):
+                        self.x2 = -self.x1
+
+                    else:                                    # c
+                        self.x2 = 0
+
+            except:
+                self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]]) 
+
+
+
+            self.p = -self.x1
+            self.q = -self.x2
+
+            self.a = 1
+            self.b = self.p + self.q
+            self.c = self.p * self.q
+
+            if bool(random.getrandbits(1)):
+                self.a = random.choice([i for i in range(-5,5) if i not in [0,1]])
+                self.b = self.b * self.a
+                self.c = self.c * self.a
 
 
 
 
 
-
-    def InequalityGenr(self):
-
-        symbol = random.randint(1,4)
         x = sp.symbols("x")
+        self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)        
+        self.solution = sp.solve(self.equation, x)                            
 
-        if symbol == 1:
+
+
+    
+
+
+
+class Inequality (Equation):
+    def __init__(self):
+        self.iscomplex = False
+        
+
+    def inequality_genr(self):         
+        self.equation_genr(True)   
+        self.critical_pts = self.equation
+        self.Cpts_solution = self.solution
+
+
+
+        x = sp.symbols("x")
+        operator = random.randint(1,4)
+
+        if operator == 1:
             self.inequality = self.a*x**2 + self.b*x + self.c > 0
 
-        elif symbol == 2:
+        elif operator == 2:
             self.inequality = self.a*x**2 + self.b*x + self.c < 0
 
-        elif symbol == 3:
+        elif operator == 3:
             self.inequality = self.a*x**2 + self.b*x + self.c >= 0
 
         else:
             self.inequality = self.a*x**2 + self.b*x + self.c <= 0
 
 
-
-
-                        # regulation  ---> filtering out                   1. not-whole numbered roots
-                        #             ---> leaving room for possibility    1. complex roots
-
-
-        self.one_solution = False
-        iscomplex = False
-        self.allow_complex = 0
         
-        self.critical_pts = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
-        self.Cpts_solution = sp.solve(self.critical_pts)
-
-
-
-        for sol in self.Cpts_solution:
-            if isinstance(sol, sp.Expr) and sol.has(sp.I):
-                iscomplex = True
-                self.allow_complex = random.randint(1,30)           # 1 --> True
-
-
-        if iscomplex and self.allow_complex != 1:
-            self.InequalitySetup()
-        
-        else:
-            if self.allow_complex != 1:
-                if len(self.Cpts_solution) == 1:
-                    self.one_solution = True
-
-                if not (int(self.Cpts_solution[0]*10) == float(self.Cpts_solution[0]*10) and (self.one_solution or int(self.Cpts_solution[1]*10) == float(self.Cpts_solution[1]*10))):
-                    self.InequalitySetup()
-
-
-           
-                        # regulation
-
-
-
-
-
         self.solution = sp.solve_univariate_inequality(self.inequality, x, relational=False)
 
 
 
 
 
-    def solving(self):
+    def solving(self):                        
         print ("..................................................")
 
         print("Solving by finding the critical points")
@@ -311,8 +284,7 @@ class Inequality (Expression):
 
 
 
-
-        if self.allow_complex != 1:
+        if self.iscomplex == False:
 
             method = input("Which method do you want to see (Square/Factoring/Discriminant): ")
 
@@ -344,4 +316,3 @@ class Inequality (Expression):
             print('')
             print("We choose any random point on the number line and substitute the 'x' in the original inequality.")
             print(f"Finally, we get the result: {self.solution}")
-

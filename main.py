@@ -25,13 +25,13 @@ for i in range(amount):
 for problem in problems:
 
     if problem_type == "Equation":
-        problem.equation_genr()
+        problem.equation_genr(False)
         sp.pprint(problem.equation)
         print("")
         print("")
 
     elif problem_type == "Inequality":
-        problem.InequalitySetup()                  ### <----- to be changed          
+        problem.inequality_genr()                         
         sp.pprint(problem.inequality)
         print("")
         print("")
