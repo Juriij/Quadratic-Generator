@@ -1,7 +1,7 @@
 import functions as fun
 import sympy as sp
 
-
+# katka testing github
 
 problem_type = input("What problems should be generated Equation/Inequality? ")
 amount = int(input("How many problems should be generated? "))
