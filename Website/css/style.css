@@ -1,0 +1,27 @@
+body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.container{
+    /* width: 60%;
+    height: 60vh; /* Full height viewport */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+    display: flex;
+    flex-direction: row;
+    background-color: white; /* Optional, to distinguish the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional, for a subtle shadow */
+    border-radius: 10px; /* Optional, rounded corners */
+    overflow: hidden;
+    }
+
+.img{
+    width: 50vh;
+    height: 50vh;
+}
