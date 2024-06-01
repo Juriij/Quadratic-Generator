@@ -1,14 +1,17 @@
 body{
-    height: 100%;
+    font-family:Kanit;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(211, 211, 211);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    height: 100vh;
 }
 
 .container{
-    /* width: 60%;
-    height: 60vh; /* Full height viewport */
+    /* width: 60%; */
+    height: 90vh; /* Full height viewport */
     /* display: flex;
     justify-content: center;
     align-items: center; */
@@ -19,9 +22,112 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional, for a subtle shadow */
     border-radius: 10px; /* Optional, rounded corners */
     overflow: hidden;
+    border-radius: 30px;
     }
 
-.img{
-    width: 50vh;
-    height: 50vh;
+.right-side{
+    width:80vh;
+    background-image: url('C:\\Users\\Katarina\\OneDrive - Stredná priemyselná škola elektrotechnická\\Dokumenty\\GitHub\\Quadratic-Generator\\Website\\Img\\mathematics-symbols.jpg');
+    padding: 20px;
 }
+
+.logo img{
+    display: flex;
+    width: 8%;
+}
+
+.left-side{
+    display: flex;
+    width:80vh;
+    padding: 40px;
+    justify-content: space-between;
+    flex-direction: column; 
+    background-color: (248,252,255,255);
+
+
+}
+
+.text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.About-us{
+    display: inline-block;
+    background-color: rgba(248,252,255,255);
+    color: rgba(2,19,98,255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.Guide{
+    display: inline-block;
+    background-color: rgba(248,252,255,255);
+    color: rgba(2,19,98,255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.Other-projects{
+    display: inline-block;
+    background-color: rgba(248,252,255,255);
+    color: rgba(2,19,98,255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.About-us:hover {
+    background-color: rgba(2,19,98,255); 
+    color: rgba(248,252,255,255); 
+}
+
+.Guide:hover {
+    background-color: rgba(2,19,98,255); 
+    color: rgba(248,252,255,255); 
+}
+
+.Other-projects:hover {
+    background-color: rgba(2,19,98,255); 
+    color: rgba(248,252,255,255); 
+}
+
+
+.download{
+    display: flex;
+}
+
+.download p{
+    background-color: rgba(2,19,98,255);
+    color: #f4f4f4;
+    padding: 10px; 
+    border-radius: 20px;
+    border: 2px solid rgba(2,19,98,255);
+    transition: background-color 0.3s, color 0.3s;
+
+}
+
+.download p:hover {
+    background-color: rgba(248,252,255,255); 
+    color:rgba(2,19,98,255); 
+    cursor: pointer;
+}
+
+
