@@ -45,7 +45,7 @@ body{
     flex-direction: column;
 }
 
-.contact{
+.contacts{
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -53,17 +53,13 @@ body{
     width: 100%;
 }
 
-.mail{
-    display: inline-block;
-    text-decoration: none;
-    background-color: rgba(2,19,98,255);
-    color: rgba(248,252,255,255);
-    padding: 3px;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border: 2px solid rgba(2,19,98,255);
 
+
+.contact{
+    background-color: rgba(248,252,255,255);
+    padding: 0px 15px;
+    border-radius: 30px;
+    border: 3px solid rgba(2,19,98,255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,43 +67,15 @@ body{
     margin: 0vh 4vh 5vh  4vh;
 }
 
-.github{
-
-    display: inline-block;
+.contact-text{
     text-decoration: none;
-    background-color: rgba(2,19,98,255);
-    color: rgba(248,252,255,255);
-    padding: 10px;
-    border-radius: 20px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border: 2px solid rgba(2,19,98,255);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: 0vh 4vh 5vh  4vh;
-}
-
-.mail:hover {
-    background-color: rgba(248,252,255,255); 
-    color:rgba(2,19,98,255); 
-}
-
-.github:hover {
-    background-color: rgba(248,252,255,255); 
-    color: rgba(2,19,98,255); 
+    color: rgba(2,19,98,255);
 }
 
 
-.mail img{
-    width: 20px;
-    height: 20px;
-}
 
-.github img{
-    width: 20px;
-    height: 20px;
+.contact img{
+    width: 25px;
+    height: 25px;
+    margin: 0px 5px;
 }
