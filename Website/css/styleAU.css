@@ -1,0 +1,113 @@
+body{
+    font-family:Kanit;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(211, 211, 211);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    height: 40vh;
+    width: 70%;
+    margin: 3vh;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+
+.img-side{
+    display:flex;
+    height:100%;
+    width: 50%;
+    border: 1px solid;
+
+}
+
+.img-side img{
+    height:100%;
+    width: 100%;
+}
+
+.text-side{
+    display: flex;
+    padding: 3vh;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contact{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+}
+
+.mail{
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(2,19,98,255);
+    color: rgba(248,252,255,255);
+    padding: 3px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(2,19,98,255);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0vh 4vh 5vh  4vh;
+}
+
+.github{
+
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(2,19,98,255);
+    color: rgba(248,252,255,255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(2,19,98,255);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0vh 4vh 5vh  4vh;
+}
+
+.mail:hover {
+    background-color: rgba(248,252,255,255); 
+    color:rgba(2,19,98,255); 
+}
+
+.github:hover {
+    background-color: rgba(248,252,255,255); 
+    color: rgba(2,19,98,255); 
+}
+
+
+.mail img{
+    width: 20px;
+    height: 20px;
+}
+
+.github img{
+    width: 20px;
+    height: 20px;
+}
