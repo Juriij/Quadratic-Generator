@@ -74,25 +74,28 @@ class MainWindow(QMainWindow):
 
     
     def expression_chosen(self, type):
+
+
+        if type == "Equation":
+
+
+
+        elif type == "Inequality":
+            s
+
+        
+
+
+
+    def expression_chosen(self, type):
+        global dropdown
+
         self.input_field.clear()
         self.input_field.setPlaceholderText("Amount")
 
         if type == "Equation":
             self.input_field.move(self.eq_btn_size[0]-150, self.eq_btn_size[1]+20)
 
-
-        elif type == "Inequality":
-            self.input_field.move(self.ineq_btn_size[0]+220, self.ineq_btn_size[1]+20)
-
-        self.input_field.show()
-
-
-
-
-=======
-    def expression_chosen(self, type):
-        global dropdown
-        if type == "Equation":
             self.comboBox.clear()
             self.comboBox.addItem(self.DDMplaceholder)
             self.comboBox.setCurrentIndex(0)
@@ -105,14 +108,17 @@ class MainWindow(QMainWindow):
 
             self.comboBox.show()
 
+
         elif type=="Inequality":
+            self.input_field.move(self.ineq_btn_size[0]+220, self.ineq_btn_size[1]+20)
+
             self.comboBox.clear()
             self.comboBox.hide()
+
+        self.input_field.show()
             
 
         
->>>>>>> Stashed changes
-
 app = QApplication(sys.argv)
 
 window = MainWindow(1400,1300)
