@@ -45,13 +45,35 @@ class MainWindow(QMainWindow):
         self.ineq_btn.clicked.connect(partial(self.expression_chosen, "Inequality"))
 
 
+
+        # Input field
+        self.input_field = QLineEdit(self)                 
+        self.input_field.setFixedSize(int(self.eq_btn_size[2]*0.6), int(self.eq_btn_size[3]*0.6))
+        self.input_field.adjustSize() 
+        self.input_field.hide()
+
+
+
   
         # show all the widgets 
         self.show() 
 
     
-    def expression_chosen(self, arg1):
-        print(arg1)
+    def expression_chosen(self, type):
+        self.input_field.clear()
+        self.input_field.setPlaceholderText("Amount")
+
+        if type == "Equation":
+            self.input_field.move(self.eq_btn_size[0]-150, self.eq_btn_size[1]+20)
+
+
+        elif type == "Inequality":
+            self.input_field.move(self.ineq_btn_size[0]+220, self.ineq_btn_size[1]+20)
+
+        self.input_field.show()
+
+
+
 
 
 app = QApplication(sys.argv)
