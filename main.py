@@ -72,18 +72,6 @@ class MainWindow(QMainWindow):
         # show all the widgets 
         self.show() 
 
-    
-    def expression_chosen(self, type):
-
-
-        if type == "Equation":
-
-
-
-        elif type == "Inequality":
-            s
-
-        
 
 
 
@@ -125,5 +113,3 @@ window = MainWindow(1400,1300)
 window.show()
 
 app.exec()
-
-
