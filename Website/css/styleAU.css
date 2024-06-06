@@ -21,6 +21,24 @@ body{
     border-radius: 10px;
     overflow: hidden;
     border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header{
+    display: flex;
+    background-color: rgba(2,19,98,255);
+    float: inline-start;
+    color: white;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+
 }
 
 
