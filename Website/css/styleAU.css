@@ -29,18 +29,48 @@ body{
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
+.about-us{
+    display: flex;
+    margin: 30vh;
+}
+
 .header{
     display: flex;
     background-color: rgba(2,19,98,255);
     float: inline-start;
     color: white;
-    width: 100%;
-    justify-content: center;
+    width: 190vh;
+    padding-right: 30vh;
+    justify-content: right;
     align-items: center;
     height: 10vh;
 
 }
 
+.subpage-btn{
+    /* display: flex;
+    padding: 3px;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin: 2vh; */
+
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(2,19,98,255);
+    color: rgba(248,252,255,255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(248,252,255,255);
+
+}
+
+.subpage-btn:hover {
+    background-color: rgba(248,252,255,255); 
+    color: rgba(2,19,98,255); 
+}
 
 .img-side{
     display:flex;
