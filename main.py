@@ -53,7 +53,7 @@ class MainWindow(QMainWindow):
     def expression_chosen(self, arg1):
         print(arg1)
 #ffgtjj
-
+#vkjjdf
 
 app = QApplication(sys.argv)
 
