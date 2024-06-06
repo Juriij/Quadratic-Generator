@@ -1,5 +1,6 @@
 import maths as math
 import sys
+from functools import partial
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import * 
@@ -32,6 +33,7 @@ class MainWindow(QMainWindow):
         self.eq_btn.setFixedSize(self.eq_btn_size[2], self.eq_btn_size[3])
         self.eq_btn.setFont(QFont("Arial", 16, QFont.Bold))
         self.eq_btn.adjustSize() 
+        self.eq_btn.clicked.connect(partial(self.expression_chosen, "Equation", 123))
 
         self.ineq_btn = QPushButton(self)
         self.ineq_btn.setText("Inequality")
@@ -40,11 +42,16 @@ class MainWindow(QMainWindow):
         self.ineq_btn.setFixedSize(self.ineq_btn_size[2], self.ineq_btn_size[3])
         self.ineq_btn.setFont(QFont("Arial", 16, QFont.Bold))
         self.ineq_btn.adjustSize() 
+        self.ineq_btn.clicked.connect(partial(self.expression_chosen, "Inequality", 123))
 
 
   
         # show all the widgets 
         self.show() 
+
+    
+    def expression_chosen(self, arg1, arg2):
+        print(arg1, arg2)
 
 
 
