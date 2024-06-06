@@ -1,124 +1,56 @@
-import functions as fun
-import sympy as sp
+import maths as math
+import sys
 
-# katka testing github
-
-problem_type = input("What problems should be generated Equation/Inequality? ")
-amount = int(input("How many problems should be generated? "))
-
-if problem_type == "Equation":
-    type = input("What type of equation should be generated? (complete/incomplete) ")
-
-
-problems = []
-
-for i in range(amount):
-    if problem_type == "Equation":
-        problems.append(fun.Equation(type))
-
-
-    elif problem_type == "Inequality":        
-        problems.append(fun.Inequality())
+from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import * 
+from PyQt5.QtGui import * 
 
 
 
-for problem in problems:
+class MainWindow(QMainWindow):
+    def __init__(self, width, height):
+        self.Width = width
+        self.Height = height
+        super().__init__()
 
-    if problem_type == "Equation":
-        problem.equation_genr(False)
-        sp.pprint(problem.equation)
-        print("")
-        print("")
-
-    elif problem_type == "Inequality":
-        problem.inequality_genr()                         
-        sp.pprint(problem.inequality)
-        print("")
-        print("")
+        self.setWindowTitle("Main")
+        self.setFixedSize(QSize(self.Width, self.Height))
 
 
+        # Title 
+        self.label = QLabel('Quadratic Generator', self) 
+        self.label.setFont(QFont("Arial", 40))
+        self.label.adjustSize() 
+        self.label.move(self.Width // 2 - self.label.width() // 2, self.Height // 2 - self.label.height() // 2 - 250)
 
 
-while True:
-    action = input("Solution/Explanation: ")
+        # Buttons                        <---------- perhaps, later can be automated  
+        self.eq_btn = QPushButton(self)
+        self.eq_btn.setText("Equation")
+        self.eq_btn_size = (self.Width // 2 - self.eq_btn.width() - 140, self.Height // 2 -30, 180, 100)
+        self.eq_btn.move(self.eq_btn_size[0], self.eq_btn_size[1])
+        self.eq_btn.setFixedSize(self.eq_btn_size[2], self.eq_btn_size[3])
+        self.eq_btn.setFont(QFont("Arial", 16, QFont.Bold))
+        self.eq_btn.adjustSize() 
 
-    if problem_type == "Equation": 
-
-        if action == "Solution":
-            n_Eq = int(input("Solution for: "))
-
-            if len(problems) < n_Eq or 0 > n_Eq:
-                print(f"There is no equation number {n_Eq}, please check the order.") 
-                print("")
-                print("")
-                print("")
-            
-            else:
-                print(problems[n_Eq-1].solution)
-                print("")
-                print("")
+        self.ineq_btn = QPushButton(self)
+        self.ineq_btn.setText("Inequality")
+        self.ineq_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
+        self.ineq_btn.move(self.ineq_btn_size[0], self.ineq_btn_size[1])
+        self.ineq_btn.setFixedSize(self.ineq_btn_size[2], self.ineq_btn_size[3])
+        self.ineq_btn.setFont(QFont("Arial", 16, QFont.Bold))
+        self.ineq_btn.adjustSize() 
 
 
-
-
-        elif action == "Explanation":
-            n_Eq = int(input("Explanation for: "))
-
-            if len(problems) < n_Eq or 0 > n_Eq:
-                print(f"There is no equation number {n_Eq}, please check the order.") 
-                print("")
-                print("")
-                print("")
-
-
-            else:
-                method = input("Which method do you want to see (Square/Factoring/Discriminant): ")
-
-                if method == "Square":
-                    problems[n_Eq-1].Square(problems[n_Eq-1].equation)
-
-                elif method == "Factoring":
-                    problems[n_Eq-1].Factoring(problems[n_Eq-1].solution)
-
-                elif method == "Discriminant":
-                    problems[n_Eq-1].Discriminant()
+  
+        # show all the widgets 
+        self.show() 
 
 
 
+app = QApplication(sys.argv)
 
+window = MainWindow(1400,1300)
+window.show()
 
-
-
-    elif problem_type == "Inequality":
-
-        if action == "Solution":
-            n_Eq = int(input("Solution for: "))
-
-            if n_Eq < len(problems) < n_Eq:
-                print(f"There is no inequality number {n_Eq}, please check the order.") 
-                print("")
-                print("")
-                print("")
-
-
-            else:
-                print(problems[n_Eq-1].solution)
-                print("")
-                print("")
-
-
-
-
-
-        elif action == "Explanation":
-            n_Eq = int(input("Explanation for: "))
-
-            if n_Eq < len(problems) < n_Eq:
-                print(f"There is no inequality number {n_Eq}, please check the order.") 
-                print("")
-                print("")
-                print("")
-
-            
-            else:
-                problems[n_Eq-1].solving()
+app.exec()
