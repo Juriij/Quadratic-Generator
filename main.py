@@ -17,12 +17,15 @@ class MainWindow(QMainWindow):
         self.Height = height
         super().__init__()
 
+        self.initUI()
+
+
+
+    def initUI(self):
         self.setWindowTitle("Main")
         self.setFixedSize(QSize(self.Width, self.Height))
 
-
-
-        # Title 
+                # Title 
         self.label = QLabel('Quadratic Generator', self) 
         self.label.setFont(QFont("Arial", 40))
         self.label.adjustSize() 
@@ -71,7 +74,7 @@ class MainWindow(QMainWindow):
   
         # show all the widgets 
         self.show() 
-
+    
 
 
 
