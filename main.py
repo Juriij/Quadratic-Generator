@@ -17,11 +17,11 @@ class MainWindow(QMainWindow):
         self.Height = height
         super().__init__()
 
-        self.initUI()
+        self.setup()
 
 
 
-    def initUI(self):
+    def setup(self):
         self.setWindowTitle("Main")
         self.setFixedSize(QSize(self.Width, self.Height))
 
@@ -33,17 +33,17 @@ class MainWindow(QMainWindow):
 
 
         # Buttons                        <---------- perhaps, later can be automated  
-        self.eq_btn = QPushButton(self)
-        self.eq_btn.setText("Equation")
+        self.eq_btn = QPushButton(self) #
+        self.eq_btn.setText("Equation") 
         self.eq_btn_size = (self.Width // 2 - self.eq_btn.width() - 140, self.Height // 2 -30, 180, 100)  #x ,y ,width, height 
         self.eq_btn.move(self.eq_btn_size[0], self.eq_btn_size[1])
         self.eq_btn.setFixedSize(self.eq_btn_size[2], self.eq_btn_size[3])
-        self.eq_btn.setFont(QFont("Arial", 16, QFont.Bold))
-        self.eq_btn.adjustSize() 
+        self.eq_btn.setFont(QFont("Arial", 16, QFont.Bold)) #
+        self.eq_btn.adjustSize()  #
         self.eq_btn.clicked.connect(partial(self.expression_chosen, "Equation"))
 
 
-        self.ineq_btn = QPushButton(self)
+        self.ineq_btn = QPushButton(self) #
         self.ineq_btn.setText("Inequality")
         self.ineq_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
         self.ineq_btn.move(self.ineq_btn_size[0], self.ineq_btn_size[1])
