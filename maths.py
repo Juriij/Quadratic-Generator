@@ -1,7 +1,9 @@
 import sympy as sp
 import random
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 
 
@@ -324,40 +326,59 @@ class Inequality (Equation):
 
                                                          # this function will be called in the
                                                          # expWindow method                                      
-def genr_expression(win, expression, amount, type=False):
+def genr_expression(expression, amount, type=False):
     problems = []
 
     for i in range(amount):
         if expression == "Equation":
             problems.append(Equation(type))
 
-
         elif expression == "Inequality":        
             problems.append(Inequality())
     
-
 
     for problem in problems:
         if expression == "Equation":
             problem.equation_genr(type)
             
-
-
         elif expression == "Inequality":
             problem.inequality_genr()   
 
 
-    render(win, problems)      
+    return render(problems, expression), problems    
 
 
 
-def render(win, problems):          # renders latex expressions
+def render(problems, expression):
+    fig, ax = plt.subplots()
+    y = 1
+ 
+    for problem in problems:
+        if expression == "Equation":
+            latex_form = sp.latex(problem.equation)
+            ax.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.1
 
 
+        elif expression == "Inequality":
+            latex_form = sp.latex(problem.inequality)
+            ax.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.1
+
+    # Set plot limits
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+
+    # Remove axes
+    ax.axis('off')
+
+
+    canvas = FigureCanvas(fig)
+    return canvas      
 
 
 
 
 
 if __name__ == "__main__":
-    genr_expression("Equation", 5, "Complete")
+    genr_expression("Equation", 3, "complete")

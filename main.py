@@ -2,12 +2,15 @@ import maths as math
 import sys
 from functools import partial
 
+
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QComboBox, QLabel, QPushButton
 from PyQt5.QtGui import QFont
+
+
 
 dropdown = False
 
@@ -17,11 +20,13 @@ class MainWindow(QMainWindow):
         self.Height = height
         super().__init__()
 
-        self.setup()
+
+        self.setupWindow()
 
 
 
-    def setup(self):
+
+    def setupWindow(self):
         self.clearWindow()
 
         self.setWindowTitle("Main")
@@ -65,7 +70,8 @@ class MainWindow(QMainWindow):
         self.gen_btn.setFont(QFont("Helvetica [Cronyx]", 14, QFont.Bold))
         self.gen_btn.adjustSize()
         self.gen_btn.clicked.connect(self.expWindow)
-        self.gen_btn.hide()      
+        self.gen_btn.hide()   
+
 
 
 
@@ -90,18 +96,31 @@ class MainWindow(QMainWindow):
 
 
     def expWindow(self):
+        expression = self.expression_type
+        amount = int(self.input_field.text())
+        type = self.comboBox.currentText().lower()
+
         self.clearWindow()
+        
+        self.expressions, problems = math.genr_expression(expression, amount, type)    # latex expressions
+        self.setCentralWidget(self.expressions)
+
+        # <----- Create a button class. Instantiation of buttons here (solution/explanation) 
+
 
         self.home_btn = QPushButton(self) #
         self.home_btn.setText("Home")
         self.home_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
-        self.home_btn.move(self.ineq_btn_size[0], self.ineq_btn_size[1])
+        self.home_btn.move(30, 30)
         self.home_btn.setFixedSize(self.ineq_btn_size[2], self.ineq_btn_size[3])
         self.home_btn.setFont(QFont("Arial", 16, QFont.Bold))
         self.home_btn.adjustSize()
-        self.home_btn.clicked.connect(self.setup)
-
+        self.home_btn.clicked.connect(self.setupWindow)   
         self.home_btn.show()
+
+
+
+
 
 
 
@@ -111,15 +130,14 @@ class MainWindow(QMainWindow):
                 widget.deleteLater()
 
 
-    def expression_chosen(self, type):
+    def expression_chosen(self, type):   # reaction to clicking eq/ineq button
         global dropdown
-
-
 
         self.input_field.clear()
         self.input_field.setPlaceholderText("Amount")
 
         if type == "Equation":
+            self.expression_type = "Equation"
             self.input_field.move(self.eq_btn_size[0]-150, self.eq_btn_size[1]+20)
 
             self.comboBox.clear()
@@ -136,6 +154,7 @@ class MainWindow(QMainWindow):
 
 
         elif type=="Inequality":
+            self.expression_type = "Inequality"
             self.input_field.move(self.ineq_btn_size[0]+220, self.ineq_btn_size[1]+20)
 
             self.comboBox.clear()
