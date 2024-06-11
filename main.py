@@ -52,6 +52,16 @@ class MainWindow(QMainWindow):
         self.ineq_btn.adjustSize() 
         self.ineq_btn.clicked.connect(partial(self.expression_chosen, "Inequality"))
 
+        self.gen_btn = QPushButton(self)
+        self.gen_btn.setText("Generate")
+        self.gen_btn_size = (self.Width // 2 -80, self.Height // 2 +180, 160, 60)
+        self.gen_btn.move(self.gen_btn_size[0], self.gen_btn_size[1])
+        self.gen_btn.setFixedSize(self.gen_btn_size[2], self.gen_btn_size[3])
+        self.gen_btn.setFont(QFont("Helvetica [Cronyx]", 14, QFont.Bold))
+        self.gen_btn.adjustSize() 
+        self.gen_btn.clicked.connect(self.clearWindow)
+
+
 
         #Dropdown
         self.comboBox = QComboBox(self)
@@ -77,9 +87,16 @@ class MainWindow(QMainWindow):
     
 
 
+    def clearWindow(self):
+        # Iterate over all child widgets and delete them
+        for widget in self.findChildren(QWidget):
+            if widget is not self:  # Don't delete the main window
+                widget.deleteLater()
 
     def expression_chosen(self, type):
         global dropdown
+
+
 
         self.input_field.clear()
         self.input_field.setPlaceholderText("Amount")
