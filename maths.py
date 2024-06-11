@@ -1,5 +1,7 @@
 import sympy as sp
 import random
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 
 
 
@@ -316,3 +318,46 @@ class Inequality (Equation):
             print('')
             print("We choose any random point on the number line and substitute the 'x' in the original inequality.")
             print(f"Finally, we get the result: {self.solution}")
+
+
+
+
+                                                         # this function will be called in the
+                                                         # expWindow method                                      
+def genr_expression(win, expression, amount, type=False):
+    problems = []
+
+    for i in range(amount):
+        if expression == "Equation":
+            problems.append(Equation(type))
+
+
+        elif expression == "Inequality":        
+            problems.append(Inequality())
+    
+
+
+    for problem in problems:
+        if expression == "Equation":
+            problem.equation_genr(type)
+            
+
+
+        elif expression == "Inequality":
+            problem.inequality_genr()   
+
+
+    render(win, problems)      
+
+
+
+def render(win, problems):          # renders latex expressions
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    genr_expression("Equation", 5, "Complete")

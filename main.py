@@ -93,6 +93,9 @@ class MainWindow(QMainWindow):
             if widget is not self:  # Don't delete the main window
                 widget.deleteLater()
 
+
+
+
     def expression_chosen(self, type):
         global dropdown
 
