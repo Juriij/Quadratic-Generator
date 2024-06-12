@@ -80,12 +80,17 @@ class MainWindow(QMainWindow):
         self.error3.move(self.Width // 2 - self.eq_btn.width() - 85, self.Height // 2 -55)
         self.error3.hide() 
 
-        # self.error2 = QLabel('Please enter number in range of 1 to 10', self)
-        # self.error2.setFont(QFont("Arial", 10))
-        # self.error2.adjustSize()
-        # self.error2.setStyleSheet("QLabel { color : red; }")
-        # self.error2.move(self.Width // 2 - self.eq_btn.width() - 85, self.Height // 2 -55)
-        # self.error2.hide() 
+        self.error2 = QLabel('Please enter number \n in range of 1 to 10', self)
+        self.error2.setFont(QFont("Arial", 9))
+        self.error2.adjustSize()
+        self.error2.setStyleSheet("QLabel { color : red; }")
+        self.error2.hide()
+
+        self.error1 = QLabel('Please enter number', self)
+        self.error1.setFont(QFont("Arial", 9))
+        self.error1.adjustSize()
+        self.error1.setStyleSheet("QLabel { color : red; }")
+        self.error1.hide() 
 
 
 
@@ -141,11 +146,22 @@ class MainWindow(QMainWindow):
                 
                 else:
                     self.error3.show()
+
+                    self.error2.hide()
+                    self.error1.hide()
             else:
-                print("Error message: invalid input 2") # too high input integer 
+                self.error2.move(self.x_error2, self.y_error2)
+                self.error2.show()
+
+                self.error3.hide()
+                self.error1.hide()
 
         except: 
-            print("Error message: invalid input 1")  # string in input field
+            self.error1.move(self.x_error2, self.y_error2)
+            self.error1.show()
+
+            self.error3.hide()
+            self.error2.hide()
 
 
 
@@ -162,10 +178,17 @@ class MainWindow(QMainWindow):
     def expression_chosen(self, type):   # reaction to clicking eq/ineq button
         global dropdown
 
+        self.error3.hide()
+        self.error2.hide()
+        self.error1.hide()
+
         self.input_field.clear()
         self.input_field.setPlaceholderText("Amount")
 
         if type == "Equation":
+            self.x_error2 = self.eq_btn_size[0]-155
+            self.y_error2 = self.eq_btn_size[1]-20
+
             self.expression_type = "Equation"
             self.input_field.move(self.eq_btn_size[0]-150, self.eq_btn_size[1]+20)
 
@@ -183,6 +206,9 @@ class MainWindow(QMainWindow):
 
 
         elif type=="Inequality":
+            self.x_error2 = self.ineq_btn_size[0]+210
+            self.y_error2 = self.ineq_btn_size[1]-20
+
             self.expression_type = "Inequality"
             self.input_field.move(self.ineq_btn_size[0]+220, self.ineq_btn_size[1]+20)
 
