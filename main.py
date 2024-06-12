@@ -97,14 +97,13 @@ class MainWindow(QMainWindow):
 
 
     def expWindow(self):
-        if self.comboBox.currentText().lower() != "select an option...":
-            try:
+        try:
             int(self.input_field.text())
 
-            if int(self.input_field.text()) <= 10:
+            if int(self.input_field.text()) <= 10 and self.comboBox.currentText().lower() != "select an option...":
                 expression = self.expression_type
-                    amount = int(self.input_field.text())
-                    type = self.comboBox.currentText().lower()
+                amount = int(self.input_field.text())
+                type = self.comboBox.currentText().lower()
 
 
                 self.clearWindow()
