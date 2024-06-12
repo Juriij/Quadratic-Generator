@@ -73,12 +73,26 @@ class MainWindow(QMainWindow):
         self.gen_btn.adjustSize()
         self.gen_btn.hide()   
 
+        self.error3 = QLabel('Please select type of equation', self)
+        self.error3.setFont(QFont("Arial", 10))
+        self.error3.adjustSize()
+        self.error3.setStyleSheet("QLabel { color : red; }")
+        self.error3.move(self.Width // 2 - self.eq_btn.width() - 85, self.Height // 2 -55)
+        self.error3.hide() 
+
+        # self.error2 = QLabel('Please enter number in range of 1 to 10', self)
+        # self.error2.setFont(QFont("Arial", 10))
+        # self.error2.adjustSize()
+        # self.error2.setStyleSheet("QLabel { color : red; }")
+        # self.error2.move(self.Width // 2 - self.eq_btn.width() - 85, self.Height // 2 -55)
+        # self.error2.hide() 
+
 
 
 
         #Dropdown
         self.comboBox = QComboBox(self)
-        self.DDMplaceholder = "Select an option..."
+        self.DDMplaceholder = "Type of equation..."
 
         self.comboBox.hide()
 
@@ -101,7 +115,7 @@ class MainWindow(QMainWindow):
             int(self.input_field.text())
 
             if int(self.input_field.text()) <= 10:
-                if self.comboBox.currentText().lower() != "select an option...":
+                if self.comboBox.currentText().lower() != "type of equation...":
                     expression = self.expression_type
                     amount = int(self.input_field.text())
                     type = self.comboBox.currentText().lower()
@@ -126,7 +140,7 @@ class MainWindow(QMainWindow):
                     self.home_btn.show()
                 
                 else:
-                    print("Error message: invalid input 3") # no option in the dropdown menu
+                    self.error3.show()
             else:
                 print("Error message: invalid input 2") # too high input integer 
 
