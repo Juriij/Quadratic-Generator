@@ -70,6 +70,7 @@ class MainWindow(QMainWindow):
         self.gen_btn.setFont(QFont("Helvetica [Cronyx]", 14, QFont.Bold))
         self.gen_btn.clicked.connect(self.expWindow)
         self.gen_btn.adjustSize()
+        self.gen_btn.adjustSize()
         self.gen_btn.hide()   
 
 
@@ -96,13 +97,14 @@ class MainWindow(QMainWindow):
 
 
     def expWindow(self):
-        try:
+        if self.comboBox.currentText().lower() != "select an option...":
+            try:
             int(self.input_field.text())
 
             if int(self.input_field.text()) <= 10:
                 expression = self.expression_type
-                amount = int(self.input_field.text())
-                type = self.comboBox.currentText().lower()
+                    amount = int(self.input_field.text())
+                    type = self.comboBox.currentText().lower()
 
 
                 self.clearWindow()
