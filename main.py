@@ -82,7 +82,7 @@ class MainWindow(QMainWindow):
         self.error3.move(self.Width // 2 - self.eq_btn.width() - 85, self.Height // 2 -55)
         self.error3.hide() 
 
-        self.error2 = QLabel('Please enter number \n in range of 1 to 10', self)
+        self.error2 = QLabel('Please enter number \n in range from 1 to 10', self)
         self.error2.setFont(QFont("Arial", 9))
         self.error2.adjustSize()
         self.error2.setStyleSheet("QLabel { color : red; }")
