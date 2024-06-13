@@ -20,6 +20,7 @@ class MainWindow(QMainWindow):
     def __init__(self, width, height):
         self.Width = width
         self.Height = height
+        self.sol_shown = False
         super().__init__()
 
 
@@ -72,7 +73,6 @@ class MainWindow(QMainWindow):
         self.gen_btn.setFont(QFont("Helvetica [Cronyx]", 14, QFont.Bold))
         self.gen_btn.clicked.connect(self.expWindow)
         self.gen_btn.adjustSize()
-        self.gen_btn.adjustSize()
         self.gen_btn.hide()   
 
         self.error3 = QLabel('Please select type of equation', self)
@@ -94,9 +94,6 @@ class MainWindow(QMainWindow):
         self.error1.setStyleSheet("QLabel { color : red; }")
         self.error1.hide() 
 
-
-
-
         #Dropdown
         self.comboBox = QComboBox(self)
         self.DDMplaceholder = "Type of equation..."
@@ -104,17 +101,13 @@ class MainWindow(QMainWindow):
         self.comboBox.hide()
 
 
-
-
-
         # Input field
         self.input_field = QLineEdit(self)
         self.input_field.setFixedSize(int(self.eq_btn_size[2]*0.6), int(self.eq_btn_size[3]*0.6))
         self.input_field.adjustSize()
         self.input_field.hide()
-
-
-
+        
+                
 
 
     def expWindow(self):
@@ -130,24 +123,54 @@ class MainWindow(QMainWindow):
 
                     self.clearWindow()
                     
-                    self.expressions, problems = math.genr_expression(expression, amount, type)    # latex expressions
+                    self.expressions, self.problems = math.genr_expression(expression, amount, type)    # latex expressions
                     self.setCentralWidget(self.expressions)
+
+                    self.eq_dropdown = QComboBox(self)
+                    self.eq_dropdown.addItem("Select expression")
+                    self.eq_dropdown.setCurrentIndex(0)
+                    self.eq_dropdown.model().item(0).setEnabled(False)
                     
                     ordinals = []
                     for i in range(amount):
                         ordinals.append(QLabel(f'{i+1}.', self))
+                        self.eq_dropdown.addItem(f'Expression .{i+1}')
 
                     for i, ordinal in enumerate(ordinals):
                         ordinal.setFont(QFont("Arial", 20))
                         ordinal.adjustSize()
-                        ordinal.move(int(self.Width*0.2), int(((self.Height)//12)*(i+1)) )
+                        ordinal.move(int(self.Width*0.2), int(((self.Height)//12)*(i+1)))
                         ordinal.show()
 
+                    self.eq_dropdown.setFont(QFont("Arial", 13))
+                    self.eq_dropdown.adjustSize()
+                    self.eq_dropdown.move(int(self.Width*0.8), int(self.Height*0.05))
+                    self.eq_dropdown.currentIndexChanged.connect(self.hide_solution_dropdown)
+                    self.eq_dropdown.show()
+
+                    
+                    self.solution_btn = QPushButton(self) 
+                    self.solution_btn.setText("Show Solution")
+                    self.solution_btn.setFixedSize(150,70)
+                    self.solution_btn.move(int(self.Width*0.82), int(self.Height*0.11))
+                    self.solution_btn.setFont(QFont("Arial", 10, QFont.Bold))
+                    self.solution_btn.adjustSize() 
+                    self.solution_btn.show()
+                    self.solution_btn.clicked.connect(self.show_solution)
+
+                        
+
+                    self.explanation_btn = QPushButton(self) 
+                    self.explanation_btn.setText("Explanation")
+                    self.explanation_btn.setFixedSize(150,70)
+                    self.explanation_btn.move(int(self.Width*0.82), int(self.Height*0.18))
+                    self.explanation_btn.setFont(QFont("Arial", 10, QFont.Bold))
+                    self.explanation_btn.adjustSize() 
+                    self.explanation_btn.clicked.connect(self.show_explanation)
+                    self.explanation_btn.show()
 
 
-
-
-                    self.home_btn = QPushButton(self) #
+                    self.home_btn = QPushButton(self) 
                     self.home_btn.setText("Home")
                     self.home_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
                     self.home_btn.move(30, 30)
@@ -156,6 +179,12 @@ class MainWindow(QMainWindow):
                     self.home_btn.adjustSize()
                     self.home_btn.clicked.connect(self.setupWindow)   
                     self.home_btn.show()
+
+
+                    self.solution_label = QLabel("solution", self)
+                    self.solution_label.setFont(QFont("Arial", 13))
+                    self.solution_label.adjustSize()
+                    self.solution_label.hide()
 
 
                 
@@ -232,6 +261,40 @@ class MainWindow(QMainWindow):
 
         self.input_field.show()
         self.gen_btn.show()
+
+
+
+    def show_solution(self):
+        self.solution_btn.setText("Hide Solution")
+        self.sol_shown = True
+        ## show solution
+
+        self.solution_label.show()
+        self.solution_label.setText(f'{self.problems[self.eq_dropdown.currentIndex()-1].solution}')
+        self.solution_label.adjustSize()
+        self.solution_label.move(int(self.Width*0.45), int(((self.Height)//12)*(self.eq_dropdown.currentIndex())))
+
+
+        self.solution_btn.clicked.connect(self.hide_solution)
+
+
+    def hide_solution(self):
+        self.solution_btn.setText("Show Solution")
+        self.sol_shown = False
+        ## hide solution
+        self.solution_label.hide()
+
+        self.solution_btn.clicked.connect(self.show_solution)
+
+    def hide_solution_dropdown(self):
+        if self.sol_shown:
+            self.hide_solution()
+        else:
+            pass
+
+
+    def show_explanation(self):
+        pass
 
 
 
