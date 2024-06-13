@@ -351,19 +351,19 @@ def genr_expression(expression, amount, type=False):
 
 def render(problems, expression):
     fig, ax = plt.subplots()
-    y = 1
+    y = 1.021
  
     for problem in problems:
         if expression == "Equation":
             latex_form = sp.latex(problem.equation)
-            ax.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.1
+            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.108
 
 
         elif expression == "Inequality":
             latex_form = sp.latex(problem.inequality)
-            ax.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.1
+            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.108
 
     # Set plot limits
     ax.set_xlim(0, 1)

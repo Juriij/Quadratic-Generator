@@ -132,6 +132,17 @@ class MainWindow(QMainWindow):
                     
                     self.expressions, problems = math.genr_expression(expression, amount, type)    # latex expressions
                     self.setCentralWidget(self.expressions)
+                    
+                    ordinals = []
+                    for i in range(amount):
+                        ordinals.append(QLabel(f'{i+1}.', self))
+
+                    for i, ordinal in enumerate(ordinals):
+                        ordinal.setFont(QFont("Arial", 20))
+                        ordinal.adjustSize()
+                        ordinal.move(int(self.Width*0.2), int(((self.Height)//12)*(i+1)) )
+                        ordinal.show()
+
 
 
 
