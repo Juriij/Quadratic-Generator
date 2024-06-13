@@ -10,6 +10,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QComboBox, QLabel, QPushButton
 from PyQt5.QtGui import QFont
 
+from screeninfo import get_monitors
+
 
 
 dropdown = False
@@ -131,7 +133,7 @@ class MainWindow(QMainWindow):
                     self.expressions, problems = math.genr_expression(expression, amount, type)    # latex expressions
                     self.setCentralWidget(self.expressions)
 
-                    # <----- Create a button class. Instantiation of buttons here (solution/explanation) 
+
 
 
                     self.home_btn = QPushButton(self) #
@@ -143,6 +145,8 @@ class MainWindow(QMainWindow):
                     self.home_btn.adjustSize()
                     self.home_btn.clicked.connect(self.setupWindow)   
                     self.home_btn.show()
+
+
                 
                 else:
                     self.error3.show()
@@ -222,7 +226,10 @@ class MainWindow(QMainWindow):
 
 app = QApplication(sys.argv)
 
-window = MainWindow(1400,1300)
+for monitor in get_monitors():
+    m = monitor
+
+window = MainWindow(int(m.width*0.6),int(m.height*0.8))
 window.show()
 
 app.exec()
