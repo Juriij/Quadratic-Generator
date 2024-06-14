@@ -7,7 +7,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QComboBox, QLabel, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QComboBox, QLabel, QPushButton
 from PyQt5.QtGui import QFont
 
 from screeninfo import get_monitors
@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.Width = width
         self.Height = height
         self.sol_shown = False
+        self.all_sol = []
         super().__init__()
 
 
@@ -136,6 +137,8 @@ class MainWindow(QMainWindow):
                         ordinals.append(QLabel(f'{i+1}.', self))
                         self.eq_dropdown.addItem(f'Expression .{i+1}')
 
+                    self.eq_dropdown.addItem("All")
+
                     for i, ordinal in enumerate(ordinals):
                         ordinal.setFont(QFont("Arial", 20))
                         ordinal.adjustSize()
@@ -145,6 +148,7 @@ class MainWindow(QMainWindow):
                     self.eq_dropdown.setFont(QFont("Arial", 13))
                     self.eq_dropdown.adjustSize()
                     self.eq_dropdown.move(int(self.Width*0.8), int(self.Height*0.05))
+                    self.previous_text = self.eq_dropdown.currentText()
                     self.eq_dropdown.currentIndexChanged.connect(self.hide_solution_dropdown)
                     self.eq_dropdown.show()
 
@@ -269,22 +273,62 @@ class MainWindow(QMainWindow):
         self.solution_btn.setText("Hide Solution")
         self.sol_shown = True
 
-        self.solution_label = QLabel("solution", self)
-        self.solution_label.setFont(QFont("Arial", 13))
-        self.solution_label.setText(f'{self.problems[self.eq_dropdown.currentIndex() - 1].solution}')
-        self.solution_label.adjustSize()
-        self.solution_label.move(int(self.Width * 0.45), int(((self.Height) // 12) * (self.eq_dropdown.currentIndex())))
-        self.solution_label.show()
+        if self.eq_dropdown.currentText() == "All":
+            self.all_sol = []
+            for problem in self.problems:
+                self.all_sol.append(QLabel("solution", self))
+
+            for i, sol in enumerate(self.all_sol):
+                sol.setFont(QFont("Arial", 13))
+                sol.setText(f'{self.problems[i].solution}')
+                sol.adjustSize()
+                sol.move(int(self.Width * 0.45), int(((self.Height) // 12) * (i+1)))
+                sol.show()
+
+      
+        else:    
+            self.solution_label = QLabel("solution", self)
+            self.solution_label.setFont(QFont("Arial", 13))
+            self.solution_label.setText(f'{self.problems[self.eq_dropdown.currentIndex() - 1].solution}')
+            self.solution_label.adjustSize()
+            self.solution_label.move(int(self.Width * 0.45), int(((self.Height) // 12) * (self.eq_dropdown.currentIndex())))
+            self.solution_label.show()
+
+            
 
 
     def hide_solution(self):
-        self.solution_btn.setText("Show Solution")
         self.sol_shown = False
-        self.solution_label.deleteLater()
+        self.solution_btn.setText("Show Solution")
+        if self.eq_dropdown.currentText() == "All":
+            for sol in self.all_sol:
+                sol.deleteLater()
+
+            self.all_sol = []
+                
+
+        else:
+            self.solution_label.deleteLater()
+
+
+
 
     def hide_solution_dropdown(self):
         if self.sol_shown:
-            self.hide_solution()
+            if self.previous_text != "All":        
+                self.solution_label.deleteLater()
+
+            elif self.previous_text == "All":  
+                for sol in self.all_sol:
+                    sol.deleteLater()
+
+                self.all_sol = []
+
+            self.sol_shown = False
+            self.solution_btn.setText("Show Solution")
+
+        self.previous_text = self.eq_dropdown.currentText()        
+
 
 
     def show_explanation(self):
