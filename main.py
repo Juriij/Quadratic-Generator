@@ -1,6 +1,7 @@
 import maths as math
 import sys
 from functools import partial
+import sympy as sp
 
 
 from PyQt5.QtCore import QSize
@@ -22,8 +23,8 @@ class MainWindow(QMainWindow):
         self.Height = height
         self.sol_shown = False
         self.all_sol = []
-        super().__init__()
 
+        super().__init__()
 
         self.setupWindow()
 
@@ -181,7 +182,7 @@ class MainWindow(QMainWindow):
                     self.home_btn.setFixedSize(self.ineq_btn_size[2], self.ineq_btn_size[3])
                     self.home_btn.setFont(QFont("Arial", 16, QFont.Bold))
                     self.home_btn.adjustSize()
-                    self.home_btn.clicked.connect(self.setupWindow)   
+                    self.home_btn.clicked.connect(self.return_menu)   
                     self.home_btn.show()
 
 
@@ -216,6 +217,10 @@ class MainWindow(QMainWindow):
         for widget in self.findChildren(QWidget):
             if widget is not self:  # Don't delete the main window
                 widget.deleteLater()
+
+    def return_menu(self):
+        self.hide_solution()
+        self.setupWindow()
 
 
     def expression_chosen(self, type):   # reaction to clicking eq/ineq button
@@ -280,18 +285,18 @@ class MainWindow(QMainWindow):
 
             for i, sol in enumerate(self.all_sol):
                 sol.setFont(QFont("Arial", 13))
-                sol.setText(f'{self.problems[i].solution}')
+                sol.setText(f'{sp.pretty(self.problems[i].solution)}')
                 sol.adjustSize()
-                sol.move(int(self.Width * 0.45), int(((self.Height) // 12) * (i+1)))
+                sol.move(int(self.Width * 0.47), int(((self.Height) // 12) * (i+1)))
                 sol.show()
 
       
         else:    
             self.solution_label = QLabel("solution", self)
             self.solution_label.setFont(QFont("Arial", 13))
-            self.solution_label.setText(f'{self.problems[self.eq_dropdown.currentIndex() - 1].solution}')
+            self.solution_label.setText(f'{sp.pretty(self.problems[self.eq_dropdown.currentIndex() - 1].solution)}')
             self.solution_label.adjustSize()
-            self.solution_label.move(int(self.Width * 0.45), int(((self.Height) // 12) * (self.eq_dropdown.currentIndex())))
+            self.solution_label.move(int(self.Width * 0.47), int(((self.Height) // 12) * (self.eq_dropdown.currentIndex())))
             self.solution_label.show()
 
             
