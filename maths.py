@@ -171,13 +171,12 @@ class Equation (Expression):
         self.type = type
     
 
-    def equation_genr(self, complex_chance): 
+    def equation_genr(self, complex_chance=False): 
         
-        ### 20% for a complex (so far only) inequality
+        ### 20% for a complex (so far only) inequality   
 
-        if complex_chance and random.randint(1,5) == 1:
+        if (complex_chance) and (random.randint(1,5) == 1):
             self.iscomplex = True
-
             self.a = 0
             self.b = 0
             self.c = 0
@@ -193,6 +192,7 @@ class Equation (Expression):
         ### 80% for a normal (so far only) inequality 
                                                       # retrospective by factoring
         else:       
+            self.iscomplex = False
             self.x1 = random.choice([i for i in range(-20,20) if i not in [0]])   
 
             try:
@@ -228,8 +228,13 @@ class Equation (Expression):
 
 
         x = sp.symbols("x")
-        self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)        
-        self.solution = sp.solve(self.equation, x)                            
+        self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
+        
+        if not self.iscomplex:        
+            self.solution = sp.solve(self.equation, x)       
+
+        else:
+            self.solution = sp.EmptySet                 
 
 
 
@@ -239,7 +244,7 @@ class Equation (Expression):
 
 class Inequality (Equation):
     def __init__(self):
-        self.iscomplex = False
+        pass
         
 
     def inequality_genr(self):         
@@ -339,8 +344,11 @@ def genr_expression(expression, amount, type=False):
 
     for problem in problems:
         if expression == "Equation":
-            problem.equation_genr(type)
-            
+            if type == "complete":
+                problem.equation_genr(True)        
+            elif type == "incomplete":
+                problem.equation_genr(False)
+
         elif expression == "Inequality":
             problem.inequality_genr()   
 
