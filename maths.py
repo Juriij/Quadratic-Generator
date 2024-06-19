@@ -10,61 +10,168 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 class Expression:
 
     def Discriminant(self):
-        print ("Calculation of discriminant: ")
+        fig1, ax1 = plt.subplots()
+        y = 0.9
+
+        canvas_list = []
+
+
+        ax1.text(0.4, y, 'Calculation of discriminant:', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
 
         D = sp.symbols ("D")
-  
+
         a = sp.symbols ("a")
         b = sp.symbols ("b")
         c = sp.symbols ("c")
 
         show_discriminant = sp.Eq(D, b**2 - 4*a*c)
-        sp.pprint(show_discriminant)
+
+        latex_form = sp.latex(show_discriminant)
+        ax1.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
         discriminant = sp.Eq(D, self.b**2 - 4*self.a*self.c)
+        ax1.text(0.4, y, f'${'D = - 4*' + str(self.a)+"*"+str(self.c)+'+'+str(self.b**2)}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
 
 
         if (4*self.a*self.c)<0:
-            print ("D =", self.b**2, "+", -4*self.a*self.c)
+            ax1.text(0.4, y, f'${"D =" + str(-4*self.a*self.c) + "+" + str(self.b**2)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.3
         else:
-            print ("D =", self.b**2, "-", 4*self.a*self.c)
+            ax1.text(0.4, y, f'${"D =" + str(-4*self.a*self.c) + "+" + str(self.b**2)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.3
 
         D_list = sp.solve(discriminant)
-        sp.pprint(discriminant)
-        print ("..................................................")
+        latex_form = sp.latex(discriminant)
+        ax1.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+
+
+        if D_list[0] >=0:
+
+            ax1.set_xlim(0, 1)
+            ax1.set_ylim(0, 1)
+
+        # Remove axes
+            ax1.axis('off')
+
+            canvas1 = FigureCanvas(fig1)
+
+            canvas_list.append(canvas1)
+
+            fig2, ax2 = plt.subplots()
+            y = 0.9
+
+            ax2.text(0.4, y, 'Calculation of x1: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            x1 = sp.symbols("x1")
+
+            show_solution1 = sp.Eq(x1, (-b -(sp.sqrt(D)))/(2*a))
+            show_solution1 = sp.latex(show_solution1)
+            ax2.text(0.4, y, f'${show_solution1}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            _b = sp.symbols(f'{-self.b}')
+            rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
+            denominator = sp.symbols(f'{2*self.a}')   
+
+            solution1 = sp.Eq(x1, (_b - rootD)/(denominator))
+            solution1 = sp.latex(solution1)
+            ax2.text(0.4, y, f'${solution1}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            numerator = sp.symbols(f'{-self.b -(sp.sqrt(D_list[0]))}') 
+            denominator = sp.symbols(f'{2*self.a}')
+
+            show_solution1 = sp.Eq(x1, numerator/denominator)
+            show_solution1 = sp.latex(show_solution1)
+
+            ax2.text(0.4, y, f'${str(show_solution1)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.3
+
+            solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*self.a))
+            x1_list = sp.solve(solution1)
+            solution1 = sp.latex(solution1)
+            ax2.text(0.4, y, f'${str(solution1)}$', ha="center", va="center", fontsize=20, color="black")
+
+
+            ax2.set_xlim(0, 1)
+            ax2.set_ylim(0, 1)
+
+        # Remove axes
+            ax2.axis('off')
+            canvas2 = FigureCanvas(fig2)
+            canvas_list.append(canvas2)
+
+            fig3, ax3 = plt.subplots()
+            y = 0.9
+
+            ax3.text(0.4, y, 'Calculation of x2: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            x2 = sp.symbols("x2")
+
+            show_solution2 = sp.Eq(x2, (-b +(sp.sqrt(D)))/(2*a))
+            show_solution2 = sp.latex(show_solution2)
+            ax3.text(0.4, y, f'${str(show_solution2)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
+
+            _b = sp.symbols(f'{-self.b}')
+            rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
+            denominator = sp.symbols(f'{2*self.a}')   
+
+            solution2 = sp.Eq(x2, (_b + rootD)/(denominator))
+            solution2 = sp.latex(solution2)
+            ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            numerator = sp.symbols(f'{-self.b +(sp.sqrt(D_list[0]))}') 
+            denominator = sp.symbols(f'{2*self.a}')
+
+            show_solution2 = sp.Eq(x2, numerator/denominator)
+            show_solution2 = sp.latex(show_solution2)
+            ax3.text(0.4, y, f'${show_solution2}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.3
+
+            solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
+            x2_list = sp.solve(solution2)
+            solution2 = sp.latex(solution2)
+            ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
+
+            ax3.set_xlim(0, 1)
+            ax3.set_ylim(0, 1)
+
+        # Remove axes
+            ax3.axis('off')
+
+
+            canvas3 = FigureCanvas(fig3)
+            canvas_list.append(canvas3)
+            return canvas_list
         
-        print("Calculation of x1: ")
-         
-        x1 = sp.symbols("x1")
+        else:
+            ax1.text(0.4, y, 'This equation has no solution', ha="center", va="center", fontsize=20, color="black")
 
-        show_solution1 = sp.Eq(x1, (-b -(sp.sqrt(D)))/(2*a))
-        sp.pprint(show_solution1)
-        solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*self.a))
+            
+            ax1.set_xlim(0, 1)
+            ax1.set_ylim(0, 1)
 
-        print(f"x1 = {-self.b} -{(sp.sqrt(D_list[0]))}/2*a")
+        # Remove axes
+            ax1.axis('off')
 
-        show_solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*a))
-        sp.pprint(show_solution1)
-        x1_list = sp.solve(solution1)
-        sp.pprint(solution1)
+            canvas1 = FigureCanvas(fig1)
 
-        print ("..................................................")
+            canvas_list.append(canvas1)
+            return canvas_list
         
-        print("Calculation of x2: ")
-
-        x2 = sp.symbols("x2")
-
-        show_solution2 = sp.Eq(x2, (-b +(sp.sqrt(D)))/(2*a))
-        sp.pprint(show_solution2)
-        solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
-
-        print(f"x2 = {-self.b} +{(sp.sqrt(D_list[0]))}/2*a")
-
-        show_solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*a))
-        sp.pprint(show_solution2)
-        x2_list = sp.solve(solution2)
-        sp.pprint(solution2)
-
-
+############################################
 
 
     def Factoring(self, SOLUTION):
@@ -124,7 +231,7 @@ class Expression:
             sp.pprint(rootage)
             sp.pprint(show_x1)
             sp.pprint(sol_x1)
-    
+
 
 
 
@@ -169,7 +276,7 @@ class Expression:
 class Equation (Expression):
     def __init__(self, type):
         self.type = type
-    
+
 
     def equation_genr(self, complex_chance=False): 
         
@@ -181,15 +288,15 @@ class Equation (Expression):
             self.b = 0
             self.c = 0
                                                       # retrospective by discriminant
-            while 4*self.a*self.c <= self.b**2:          
-                self.a = random.choice([i for i in range(-2,5) if i not in [0]]) 
-                self.b = random.choice([i for i in range(-15,15) if i not in [0]]) 
-                self.c = random.choice([i for i in range(-150,150) if i not in [0]]) 
+            while 4*self.a*self.c <= self.b**2:
+                self.a = random.choice([i for i in range(-2,5) if i not in [0]])
+                self.b = random.choice([i for i in range(-15,15) if i not in [0]])
+                self.c = random.choice([i for i in range(-150,150) if i not in [0]])
 
 
 
 
-        ### 80% for a normal (so far only) inequality 
+        ### 80% for a normal (so far only) inequality
                                                       # retrospective by factoring
         else:       
             self.iscomplex = False
@@ -197,9 +304,9 @@ class Equation (Expression):
 
             try:
                 if self.type == "complete":
-                    self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]])  
+                    self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]])
 
-                elif self.type == "incomplete": 
+                elif self.type == "incomplete":
                     if "b" == random.choice(["b", "c"]):
                         self.x2 = -self.x1
 
@@ -207,7 +314,7 @@ class Equation (Expression):
                         self.x2 = 0
 
             except:
-                self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]]) 
+                self.x2 = random.choice([i for i in range(-20,20) if i not in [0, -self.x1]])
 
 
 
@@ -238,7 +345,7 @@ class Equation (Expression):
 
 
 
-    
+
 
 
 
@@ -247,8 +354,8 @@ class Inequality (Equation):
         pass
         
 
-    def inequality_genr(self):         
-        self.equation_genr(True)   
+    def inequality_genr(self):
+        self.equation_genr(True)
         self.critical_pts = self.equation
         self.Cpts_solution = self.solution
 
@@ -270,14 +377,14 @@ class Inequality (Equation):
             self.inequality = self.a*x**2 + self.b*x + self.c <= 0
 
 
-        
+
         self.solution = sp.solve_univariate_inequality(self.inequality, x, relational=False)
 
 
 
 
 
-    def solving(self):                        
+    def solving(self):
         print ("..................................................")
 
         print("Solving by finding the critical points")
@@ -312,7 +419,7 @@ class Inequality (Equation):
             print("We choose random points from each interval and substitute the 'x' in the original inequality.")
             print(f"Finally, we get the result: {self.solution}")
 
-            
+
 
 
 
@@ -330,7 +437,7 @@ class Inequality (Equation):
 
 
                                                          # this function will be called in the
-                                                         # expWindow method                                      
+                                                         # expWindow method
 def genr_expression(expression, amount, type=False):
     problems = []
 
@@ -338,9 +445,9 @@ def genr_expression(expression, amount, type=False):
         if expression == "Equation":
             problems.append(Equation(type))
 
-        elif expression == "Inequality":        
+        elif expression == "Inequality":
             problems.append(Inequality())
-    
+
 
     for problem in problems:
         if expression == "Equation":
@@ -350,28 +457,28 @@ def genr_expression(expression, amount, type=False):
                 problem.equation_genr(False)
 
         elif expression == "Inequality":
-            problem.inequality_genr()   
+            problem.inequality_genr()
 
 
-    return render(problems, expression), problems    
+    return render(problems, expression), problems
 
 
 
 def render(problems, expression):
     fig, ax = plt.subplots()
-    y = 1.021
- 
+    y = 1
+
     for problem in problems:
         if expression == "Equation":
             latex_form = sp.latex(problem.equation)
-            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.108
+            ax.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.1
 
 
         elif expression == "Inequality":
             latex_form = sp.latex(problem.inequality)
-            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.108
+            ax.text(0.4, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.1
 
     # Set plot limits
     ax.set_xlim(0, 1)
@@ -382,7 +489,7 @@ def render(problems, expression):
 
 
     canvas = FigureCanvas(fig)
-    return canvas      
+    return canvas
 
 
 
