@@ -31,7 +31,8 @@ body{
 
 .about-us{
     display: flex;
-    margin: 30vh;
+    margin-left: 39%;
+    margin-right: 16%;
 }
 
 .header{
