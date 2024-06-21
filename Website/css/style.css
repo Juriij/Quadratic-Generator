@@ -10,17 +10,11 @@ body{
 }
 
 .container{
-    /* width: 60%; */
-    height: 90vh; /* Full height viewport */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-
+    height: 90vh;
     display: flex;
     flex-direction: row;
-    background-color: white; /* Optional, to distinguish the container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional, for a subtle shadow */
-    border-radius: 10px; /* Optional, rounded corners */
+    background-color: white; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     overflow: hidden;
     border-radius: 30px;
     }
@@ -132,5 +126,32 @@ body{
     color:rgba(2,19,98,255); 
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    body{
+        font-size: small;
+    }
+      
+    .container{
+        width: 90%;
+        flex-direction: column-reverse;
+    }
+
+    .right-side{
+        padding: 10px;
+        height: 50vh;
+    } 
+
+    .left-side{
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1{
+        margin-right: 30%;
+    }
+
+}
+
 
 

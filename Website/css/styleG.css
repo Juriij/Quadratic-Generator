@@ -97,3 +97,40 @@ body{
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
+
+
+@media (max-width: 600px) {
+    body{
+        font-size: small;
+    }
+
+    .steps{
+        width: 40%;
+        height:60%;
+        margin: 3% 5%;
+    }
+
+    .text{
+        padding: 0 5%;
+    }
+
+
+    .header{
+        justify-content: left;
+        flex-direction: row;
+        height: 10vh;
+    
+    }
+
+    .guide{
+        margin: 0;
+        padding: 0;
+        padding-left: 5%;
+        padding-right: 23%;
+    }
+
+    .subpage-btn{
+        margin: 5px;
+    
+    }
+}

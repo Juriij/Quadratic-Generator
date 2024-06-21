@@ -7,7 +7,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 
 .container{
@@ -18,7 +18,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 100vh;
+    height: 100%;
 }
 
 .card{
@@ -32,7 +32,6 @@ body{
     width: 30%;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px;
     overflow: hidden;
     border-radius: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -100,4 +99,52 @@ body{
     justify-content: left;
     align-items: center;
     flex-direction: column;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+    body{
+        font-size: small;
+        height: auto;
+        width: auto;
+    }
+
+    .container{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .card{
+        height: 83vh;
+        width: 80%;
+        margin-top: 5%;
+    }
+
+    .text-side{
+        height: 100%;
+        padding: 0 4vh;
+        justify-content: center;
+    }
+
+
+    .header{
+        justify-content: left;
+        flex-direction: row;
+    }
+
+    .other-projects{
+        margin: 0;
+        padding: 0;
+        padding-left: 5%;
+        padding-right: 20%;
+    }
+
+
+    .subpage-btn{
+        margin: 5px;
+    
+    }
 }
