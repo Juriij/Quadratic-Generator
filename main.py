@@ -124,6 +124,10 @@ class MainWindow(QMainWindow):
 
 
                     self.clearWindow()
+
+                    self.exp_selected = False
+                    self.select_error_colapse = False
+                    self.once_select_error = True
                     
                     self.expressions, self.problems = math.genr_expression(expression, amount, type)    # latex expressions
                     self.setCentralWidget(self.expressions)
@@ -268,11 +272,15 @@ class MainWindow(QMainWindow):
         self.gen_btn.show()
 
 
+
     def toggle_solution(self):
         if self.sol_shown:
             self.hide_solution()
         else:
-            self.show_solution()
+            if self.exp_selected:
+                self.show_solution()
+            else:
+                self.selection_error()
 
 
     def show_solution(self):
@@ -320,6 +328,13 @@ class MainWindow(QMainWindow):
 
 
     def hide_solution_dropdown(self):
+        self.exp_selected = True
+
+        if self.select_error_colapse:
+            self.select_error_colapse = False
+            self.selection_error_resolved() 
+
+
         if self.sol_shown:
             if self.previous_text != "All":        
                 self.solution_label.deleteLater()
@@ -335,11 +350,29 @@ class MainWindow(QMainWindow):
 
         self.previous_text = self.eq_dropdown.currentText()    
  
+    
+    def selection_error(self):
+        if self.once_select_error:
+            self.once_select_error = False
+            self.select_error_colapse = True
+            self.error4 = QLabel('Please select expression', self)
+            self.error4.setFont(QFont("Arial", 11))
+            self.error4.adjustSize()
+            self.error4.setStyleSheet("QLabel { color : red; }")
+            self.error4.move(int(self.eq_dropdown.x()-self.Width//5.5), int(self.eq_dropdown.y()+self.Height//100))
+            self.error4.show()
 
+
+    def selection_error_resolved(self):
+        self.error4.deleteLater()
 
 
     def show_explanation(self):
-        pass
+        if self.exp_selected:
+            pass
+
+        else:
+            self.selection_error()
 
 
 
