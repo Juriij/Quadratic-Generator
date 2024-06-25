@@ -4,7 +4,7 @@
 STU-project to be done:
 
 - App:
-1. Select expression/explanation bug (when no expression is picked and button show solution is clicked last expression's solution pops up at the top of the screen) ✅
+1. Select expression/explanation bug (when no expression is picked and button show solution is clicked last expression's solution pops up at the top of the screen) ✅(Juro)
 
 2. Explanation Window 
 
