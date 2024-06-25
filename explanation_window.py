@@ -60,4 +60,3 @@ if __name__ == '__main__':
     window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem,"discriminant")
     window.show()
     sys.exit(app.exec_())
-

@@ -219,7 +219,8 @@ class MainWindow(QMainWindow):
                 widget.deleteLater()
 
     def return_menu(self):
-        self.hide_solution()
+        if self.sol_shown:
+            self.hide_solution()
         self.setupWindow()
 
 
@@ -332,7 +333,8 @@ class MainWindow(QMainWindow):
             self.sol_shown = False
             self.solution_btn.setText("Show Solution")
 
-        self.previous_text = self.eq_dropdown.currentText()        
+        self.previous_text = self.eq_dropdown.currentText()    
+ 
 
 
 
