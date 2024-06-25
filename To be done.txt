@@ -1,0 +1,25 @@
+!!! (Try instantiating the explanation window in the method of main) !!!
+
+
+STU-project to be done:
+
+- App:
+1. Select expression/explanation bug (when no expression is picked and button show solution is clicked last expression's solution pops up at the top of the screen) ✅
+
+2. Explanation Window 
+
+3. Printing problems Window
+
+4. When Main Window is closed or Home button clicked, close all the child windows
+
+5. Conversion to an .exe file
+
+
+- Website:
+
+1. Choose a template (Katka/Juro)  -  I think we will make a mix
+
+2. Fill in actual information
+
+3. Activate download button
+
