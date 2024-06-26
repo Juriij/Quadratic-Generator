@@ -10,7 +10,7 @@ STU-project to be done:
 
 3. Printing problems Window
 
-4. When Main Window is closed or Home button clicked, close all the child windows
+4. When Home button clicked, close all the child windows
 
 5. Conversion to an .exe file
 
