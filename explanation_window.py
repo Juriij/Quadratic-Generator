@@ -23,7 +23,8 @@ class SecondWindow(QWidget):
         container_layout = QVBoxLayout(container_widget)
         
 
-        canvases = self.problem.Discriminant()
+        canvases = self.problem.Discriminant()   # creates 3 figure subplots that need to be deleted
+                                                 # when the explanation window is closed
 
         for canvas in canvases:
             container_layout.addWidget(canvas)
@@ -41,6 +42,11 @@ class SecondWindow(QWidget):
         # Set window title and size
         self.setWindowTitle('Explanation')
         self.resize(self.width, self.height)
+
+
+    def closeEvent(self, event):       ####### Method is called when window is closed ##########
+        print("Explanation Window closed!")
+        super().closeEvent(event)
 
 
 

@@ -4,7 +4,7 @@ from functools import partial
 import sympy as sp
 
 
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, QTimer
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
@@ -15,6 +15,11 @@ from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from PyQt5.QtGui import QPixmap, QPainter
 
 from screeninfo import get_monitors
+
+
+
+
+from explanation_window import SecondWindow   # Testing
 
 
 
@@ -197,7 +202,7 @@ class MainWindow(QMainWindow):
                     self.print_btn = QPushButton(self) 
                     self.print_btn.setText("print it!")
                     self.print_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
-                    self.print_btn.move(500, 1000)
+                    self.print_btn.move(int(self.Width*0.27), int(self.Height*0.9))
                     self.print_btn.setFixedSize(self.ineq_btn_size[2], self.ineq_btn_size[3])
                     self.print_btn.setFont(QFont("Arial", 13, QFont.Bold))
                     self.print_btn.adjustSize()
@@ -241,6 +246,8 @@ class MainWindow(QMainWindow):
         if self.sol_shown:
             self.hide_solution()
         self.setupWindow()
+        self.close_win('Explanation') 
+
 
 
     def expression_chosen(self, type):   # reaction to clicking eq/ineq button
@@ -382,12 +389,27 @@ class MainWindow(QMainWindow):
         self.error4.deleteLater()
 
 
+
     def show_explanation(self):
         if self.exp_selected:
-            pass
+            # Testing instantiation of the explanation window
+            self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[0],"discriminant")
+            self.scwindow.show()
 
         else:
             self.selection_error()
+
+
+    def close_win(self, window_title):
+        app = QApplication.instance()
+        if not app:
+            return False
+        
+        for widget in app.topLevelWidgets():
+            if widget.windowTitle() == window_title:
+                widget.close()
+                break
+
 
 
     def showPrintDialog(self):
@@ -421,13 +443,13 @@ class MainWindow(QMainWindow):
         painter.end()
 
 
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
 
-app = QApplication(sys.argv)
+    for monitor in get_monitors():
+        m = monitor
 
-for monitor in get_monitors():
-    m = monitor
+    window = MainWindow(int(m.width*0.6),int(m.height*0.8))
+    window.show()
 
-window = MainWindow(int(m.width*0.6),int(m.height*0.8))
-window.show()
-
-app.exec()
+    sys.exit(app.exec_())
