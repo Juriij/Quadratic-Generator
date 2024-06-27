@@ -10,7 +10,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 class Expression:
 
     def Discriminant(self):
-        fig1, ax1 = plt.subplots()
+        fig1, ax1 = plt.subplots(num=1)
         y = 0.9
 
         canvas_list = []
@@ -62,7 +62,7 @@ class Expression:
 
             canvas_list.append(canvas1)
 
-            fig2, ax2 = plt.subplots()
+            fig2, ax2 = plt.subplots(num=2)
             y = 0.9
 
             ax2.text(0.4, y, 'Calculation of x1: ', ha="center", va="center", fontsize=20, color="black")
@@ -108,7 +108,7 @@ class Expression:
             canvas2 = FigureCanvas(fig2)
             canvas_list.append(canvas2)
 
-            fig3, ax3 = plt.subplots()
+            fig3, ax3 = plt.subplots(num=3)
             y = 0.9
 
             ax3.text(0.4, y, 'Calculation of x2: ', ha="center", va="center", fontsize=20, color="black")

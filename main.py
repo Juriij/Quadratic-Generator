@@ -2,26 +2,15 @@ import maths as math
 import sys
 from functools import partial
 import sympy as sp
-
-
 from PyQt5.QtCore import QSize, QTimer
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-
 from PyQt5.QtWidgets import QApplication, QWidget, QComboBox, QLabel, QPushButton
 from PyQt5.QtGui import QFont
-
 from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from PyQt5.QtGui import QPixmap, QPainter
-
 from screeninfo import get_monitors
-
-
-
-
-from explanation_window import SecondWindow   # Testing
-
-
+from explanation_window import SecondWindow   
 
 dropdown = False
 
@@ -35,8 +24,6 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setupWindow()
-
-
 
 
     def setupWindow(self):
@@ -118,7 +105,6 @@ class MainWindow(QMainWindow):
         self.input_field.hide()
         
                 
-
 
     def expWindow(self):
         try:
@@ -209,8 +195,6 @@ class MainWindow(QMainWindow):
                     self.print_btn.clicked.connect(self.showPrintDialog)   
                     self.print_btn.show()
 
-
-
                 
                 else:
                     self.error3.show()
@@ -234,9 +218,6 @@ class MainWindow(QMainWindow):
 
 
 
-
-
-
     def clearWindow(self):
         for widget in self.findChildren(QWidget):
             if widget is not self:  # Don't delete the main window
@@ -245,9 +226,22 @@ class MainWindow(QMainWindow):
     def return_menu(self):
         if self.sol_shown:
             self.hide_solution()
-        self.setupWindow()
-        self.close_win('Explanation') 
 
+        if self.is_win_open("Explanation"):                                                                  
+            self.close_win(self.scwindow)                  
+ 
+
+        self.setupWindow()
+
+    
+    def close_win(self, win):
+        self.scwindow.close_figs("discriminant")   # <----   LATER TO BE CHANGE ACCORDING  
+        win.close()                                #####     TO THE METHOD THAT WAS CHOSEN 
+        win.deleteLater() 
+        win = None
+
+
+ 
 
 
     def expression_chosen(self, type):   # reaction to clicking eq/ineq button
@@ -350,6 +344,9 @@ class MainWindow(QMainWindow):
 
 
     def hide_solution_dropdown(self):
+        if self.is_win_open("Explanation"):
+            self.close_win(self.scwindow)
+
         self.exp_selected = True
 
         if self.select_error_colapse:
@@ -393,22 +390,29 @@ class MainWindow(QMainWindow):
     def show_explanation(self):
         if self.exp_selected:
             # Testing instantiation of the explanation window
-            self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[0],"discriminant")
-            self.scwindow.show()
+            if (not self.is_win_open("Explanation")) and (not self.eq_dropdown.currentText() == "All"):
+                print("instance created")
+                self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[0],"discriminant")
+                self.scwindow.show()
+
+            else:
+                print("Cant create an instance of Explanation win")
 
         else:
             self.selection_error()
 
 
-    def close_win(self, window_title):
+
+    def is_win_open(self, window_title):
         app = QApplication.instance()
         if not app:
             return False
         
         for widget in app.topLevelWidgets():
             if widget.windowTitle() == window_title:
-                widget.close()
-                break
+                return True
+        
+        return False
 
 
 
@@ -430,14 +434,17 @@ class MainWindow(QMainWindow):
         # Create a QPainter to draw the pixmap on the QPrinter
         painter = QPainter(printer)
         
-        # Calculate the scale factor
-        scale_factor = min(printer.pageRect().width() / pixmap.width(), printer.pageRect().height() / pixmap.height())
+        # Get the dimensions of the printable area
+        pageRect = printer.pageRect()
         
-        # Set the scale
-        painter.scale(scale_factor, scale_factor)
+        # Calculate the scale factor to make the image significantly larger
+        scale_factor = min(pageRect.width() / pixmap.width(), pageRect.height() / pixmap.height()) * 1.75  # Increased scale factor
+
+        # Scale the pixmap
+        scaled_pixmap = pixmap.scaled(int(pixmap.width() * scale_factor), int(pixmap.height() * scale_factor))
         
-        # Draw the pixmap
-        painter.drawPixmap(50, 50, pixmap)
+        # Draw the scaled pixmap
+        painter.drawPixmap(0, 0, scaled_pixmap)
         
         # End the painting
         painter.end()

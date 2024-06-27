@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QScrollArea, QSpacerItem, QSizePolicy
 from screeninfo import get_monitors
 from maths import Equation
+import matplotlib.pyplot as plt
 
 class SecondWindow(QWidget):
     def __init__(self, width, height, problem, method):
@@ -23,8 +24,7 @@ class SecondWindow(QWidget):
         container_layout = QVBoxLayout(container_widget)
         
 
-        canvases = self.problem.Discriminant()   # creates 3 figure subplots that need to be deleted
-                                                 # when the explanation window is closed
+        canvases = self.problem.Discriminant()   
 
         for canvas in canvases:
             container_layout.addWidget(canvas)
@@ -44,11 +44,24 @@ class SecondWindow(QWidget):
         self.resize(self.width, self.height)
 
 
+    def close_figs(self, method):      # AFTER REDOING THE OTHER METHODS AND CREATING NEW SUBPLOTS,                                         
+        if method == "discriminant":   # DON'T FORGET TO CLOSE THEM ACCORDINGLY
+            for i in range(1,4):
+                plt.close(i)            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+
     def closeEvent(self, event):       ####### Method is called when window is closed ##########
         print("Explanation Window closed!")
-        super().closeEvent(event)
+        self.close()                            
+        self.deleteLater()
+        self.close_figs(self.method)             
+        super().closeEvent(event)               
 
 
+        
 
 
 if __name__ == '__main__':

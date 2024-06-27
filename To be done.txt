@@ -7,12 +7,16 @@ STU-project to be done:
 1. Select expression/explanation bug (when no expression is picked and button show solution is clicked last expression's solution pops up at the top of the screen) ✅(Juro)
 
 2. Explanation Window 
+  -> Prohibit the Explanation Window to be created when one is already open. ✅(Juro)
+  -> Close the open subplots when the Explanation Window gets closed.        ✅(Juro)
+  -> Close the Explanation Window when new expression has been chosen in the Main Window ✅(Juro)
+  -> Disable the Show Explanation button when "all" is selected in the dropdown menu ✅(Juro)
+  -> Finish the function
 
-3. Printing problems Window
 
-4. When Home button clicked, close all the child windows
+3. Printing problems Window  ✅(Juro)
 
-5. Conversion to an .exe file
+4. Conversion to an .exe file
 
 
 - Website:
