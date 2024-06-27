@@ -11,6 +11,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QApplication, QWidget, QComboBox, QLabel, QPushButton
 from PyQt5.QtGui import QFont
 
+from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
+from PyQt5.QtGui import QPixmap, QPainter
+
 from screeninfo import get_monitors
 
 
@@ -188,6 +191,18 @@ class MainWindow(QMainWindow):
                     self.home_btn.adjustSize()
                     self.home_btn.clicked.connect(self.return_menu)   
                     self.home_btn.show()
+
+                    ### print button (print it!)
+
+                    self.print_btn = QPushButton(self) 
+                    self.print_btn.setText("print it!")
+                    self.print_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
+                    self.print_btn.move(500, 1000)
+                    self.print_btn.setFixedSize(self.ineq_btn_size[2], self.ineq_btn_size[3])
+                    self.print_btn.setFont(QFont("Arial", 13, QFont.Bold))
+                    self.print_btn.adjustSize()
+                    self.print_btn.clicked.connect(self.showPrintDialog)   
+                    self.print_btn.show()
 
 
 
@@ -373,6 +388,37 @@ class MainWindow(QMainWindow):
 
         else:
             self.selection_error()
+
+
+    def showPrintDialog(self):
+        printer = QPrinter()
+        dialog = QPrintDialog(printer, self)
+        
+        if dialog.exec_() == QPrintDialog.Accepted:
+            self.print_plot(printer)
+
+
+    def print_plot(self, printer):
+        # Save the canvas to a temporary file
+        self.expressions.print_figure('temp_plot.png', dpi=300)
+        
+        # Load the temporary file into a QPixmap
+        pixmap = QPixmap('temp_plot.png')
+        
+        # Create a QPainter to draw the pixmap on the QPrinter
+        painter = QPainter(printer)
+        
+        # Calculate the scale factor
+        scale_factor = min(printer.pageRect().width() / pixmap.width(), printer.pageRect().height() / pixmap.height())
+        
+        # Set the scale
+        painter.scale(scale_factor, scale_factor)
+        
+        # Draw the pixmap
+        painter.drawPixmap(50, 50, pixmap)
+        
+        # End the painting
+        painter.end()
 
 
 
