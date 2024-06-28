@@ -1,124 +1,104 @@
-body{
-    font-family:Kanit;
+body {
+    font-family: Kanit;
     margin: 0;
     padding: 0;
     background-color: rgb(211, 211, 211);
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
-.container{
+.header {
     display: flex;
-    height: 40vh;
-    width: 70%;
-    margin: 3vh;
-    flex-direction: row;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px;
-    overflow: hidden;
-    border-radius: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.container2{
-    display: flex;
-    height: 40vh;
-    width: 70%;
-    margin: 3vh;
-    flex-direction: row;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px;
-    overflow: hidden;
-    border-radius: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.container2:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.about-us{
-    display: flex;
-    margin-left: 39%;
-    margin-right: 16%;
-}
-
-.header{
-    display: flex;
-    background-color: rgba(2,19,98,255);
-    float: inline-start;
+    background-color: rgba(2, 19, 98, 255);
     color: white;
     width: 100%;
     justify-content: center;
     align-items: center;
     height: 10vh;
-
+    position: fixed; /* Fix the header at the top */
+    top: 0; /* Ensure it is at the top */
+    left: 0; /* Ensure it is aligned to the left */
 }
 
-.subpage-btn{
-    /* display: flex;
-    padding: 3px;
-    border: 2px solid white;
-    border-radius: 20px;
-    margin: 2vh; */
-
-    display: inline-block;
-    text-decoration: none;
-    background-color: rgba(2,19,98,255);
-    color: rgba(248,252,255,255);
-    padding: 10px;
-    border-radius: 20px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border: 2px solid rgba(248,252,255,255);
-
+.about-us {
+    margin-left: 39%;
+    margin-right: 16%;
+    font-size: 3rem; /* Enlarging the title text */
 }
 
-.subpage-btn:hover {
-    background-color: rgba(248,252,255,255); 
-    color: rgba(2,19,98,255); 
-}
-
-.img-side{
-    display:flex;
-    height:100%;
-    width: 50%;
-    border: 1px solid;
-
-}
-
-.img-side img{
-    height:100%;
+.container {
+    display: flex;
     width: 100%;
-}
-
-.text-side{
-    display: flex;
-    padding: 3vh;
-    justify-content: left;
-    align-items: center;
-    flex-direction: column;
-}
-
-.contacts{
-    display: flex;
-    align-items: center;
+    justify-content: space-between; /* Space out left and right sections */
+    align-items: flex-start; /* Align items to the top */
     flex-direction: row;
-    justify-content: left;
-    width: 100%;
+    margin-top: 10vh; /* Add margin to account for the header height */
+    padding: 0 2%; /* Add some padding to the sides */
 }
+
+.left{
+    width: 40%;
+}
+
+.left{
+    margin-top: 50px;
+}
+
+.who{
+    padding-bottom: 50px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.text {
+    text-align: center;
+}
+
+
+
+.right{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 60%;
+    padding-top: 40px;
+}
+
+.katka{
+    margin-right: 50px;
+}
+
+.katka, .juro {
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #ccc; 
+    border-radius: 12px; 
+    padding: 10px;  
+    width: 370px; 
+    height: 635px; 
+  }
+  
+.profile img {
+    display: block;
+    width: 85%; /* Adjusted width of the image */
+    height: 400px; /* Maintain aspect ratio */
+    border-radius: 20px;
+    margin: 0 auto 15px; /* Center image and add spacing below */
+    margin-top: 20px;
+  }
+  
+.name {
+    font-weight: bold;
+    margin-top: 10px; /* Spacing between name and image */
+  }
+  
+
 
 
 
@@ -131,7 +111,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin: 0vh 4vh 5vh  4vh;
+    margin: 10px 45px 0 45px;
 }
 
 .contact-text{
@@ -146,69 +126,65 @@ body{
     height: 25px;
     margin: 0px 5px;
 }
+  
+
+
+
+
+
+.subpage-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(2, 19, 98, 255);
+    color: rgba(248, 252, 255, 255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(248, 252, 255, 255);
+}
+
+.subpage-btn:hover {
+    background-color: rgba(248, 252, 255, 255);
+    color: rgba(2, 19, 98, 255);
+}
+
 
 
 @media (max-width: 600px) {
-    body{
+    body {
         font-size: small;
-        width: auto;
-        height: auto;
         padding: 0;
         margin: 0;
     }
 
-    .header{
+    .header {
         justify-content: left;
         flex-direction: row;
         height: 10vh;
-    
     }
 
-    .about-us{
+    .about-us {
         margin: 0;
         padding: 0;
         padding-left: 5%;
         padding-right: 23%;
     }
 
-    .subpage-btn{
+    .subpage-btn {
         margin: 5px;
-    
     }
 
-    .container{
-        height: 80%;
-        width: 80%;
-        margin: 5%;
-        flex-direction: column;
+    .container {
+        flex-direction: column; /* Stack sections vertically on small screens */
+        align-items: center;
+        margin-top: 10vh; /* Ensure margin-top is maintained */
+        padding: 0;
     }
 
-    .container2{
-        height: 80%;
-        width: 80%;
-        margin: 5%;
-        flex-direction: column-reverse;
+    .left, .right {
+        width: 100%; /* Make sections take full width on small screens */
+        margin-bottom: 2vh;
     }
-
-    .img-side{
-        display:flex;
-        height:40vh;
-        width: 100%;
-        border: 1px solid;
-    
-    }
-
-    .img-side img{
-        width: 100%;
-        height: 100%;
-    }
-
-    .contacts{
-        flex-direction: column;
-    }
-
-    .contact{
-        margin: 2%;
-    }
-
 }
