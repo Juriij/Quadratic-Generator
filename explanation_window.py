@@ -55,9 +55,9 @@ class SecondWindow(QWidget):
 
     def closeEvent(self, event):       ####### Method is called when window is closed ##########
         print("Explanation Window closed!")
+        self.close_figs(self.method)    
         self.close()                            
-        self.deleteLater()
-        self.close_figs(self.method)             
+        self.deleteLater()         
         super().closeEvent(event)               
 
 
