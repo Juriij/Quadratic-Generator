@@ -82,7 +82,13 @@ body {
     padding: 10px;  
     width: 370px; 
     height: 635px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
+.katka:hover, .juro:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
   
 .profile img {
     display: block;
