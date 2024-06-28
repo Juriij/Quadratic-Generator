@@ -103,6 +103,32 @@ body{
 
 
 
+.contact{
+    background-color: rgba(248,252,255,255);
+    padding: 0px 15px;
+    border-radius: 30px;
+    border: 3px solid rgba(2,19,98,255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px 45px 0 45px;
+}
+
+.contact-text{
+    text-decoration: none;
+    color: rgba(2,19,98,255);
+}
+
+
+
+.contact img{
+    width: 25px;
+    height: 25px;
+    margin: 0px 5px;
+}
+
+
 
 
 @media (max-width: 600px) {
