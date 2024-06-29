@@ -79,17 +79,6 @@ body{
     transition: background-color 0.3s, color 0.3s;
 }
 
-.Other-projects{
-    display: inline-block;
-    text-decoration: none;
-    background-color: rgba(248,252,255,255);
-    color: rgba(2,19,98,255);
-    padding: 10px;
-    border-radius: 20px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
 
 .About-us:hover {
     background-color: rgba(2,19,98,255); 
@@ -101,10 +90,6 @@ body{
     color: rgba(248,252,255,255); 
 }
 
-.Other-projects:hover {
-    background-color: rgba(2,19,98,255); 
-    color: rgba(248,252,255,255); 
-}
 
 
 .download{
