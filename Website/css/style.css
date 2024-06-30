@@ -92,7 +92,8 @@ body{
     display: flex;
 }
 
-.download p {
+.download a {
+    text-decoration: none;
     background-color: rgba(2,19,98,255);
     color: #f4f4f4;
     padding: 10px; 
@@ -101,7 +102,7 @@ body{
     transition: background-color 0.3s, color 0.3s;
 }
 
-.download p:hover {
+.download a:hover {
     background-color: rgba(248,252,255,255); 
     color: rgba(2,19,98,255); 
     cursor: pointer;
