@@ -9,6 +9,11 @@ body {
     height: 100%;
 }
 
+.about-us {
+    margin-left: 36%;
+    margin-right: 11%;
+}
+
 .header {
     display: flex;
     background-color: rgba(2, 19, 98, 255);
@@ -22,10 +27,28 @@ body {
     left: 0; /* Ensure it is aligned to the left */
 }
 
-.about-us {
-    margin-left: 39%;
-    margin-right: 16%;
+
+
+.subpage-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(2, 19, 98, 255);
+    color: rgba(248, 252, 255, 255);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(248, 252, 255, 255);
 }
+
+.subpage-btn:hover {
+    background-color: rgba(248, 252, 255, 255);
+    color: rgba(2, 19, 98, 255);
+}
+
+
+
 
 .container {
     display: flex;
@@ -132,29 +155,6 @@ body {
     margin: 0px 5px;
 }
   
-
-
-
-
-
-.subpage-btn {
-    display: inline-block;
-    text-decoration: none;
-    background-color: rgba(2, 19, 98, 255);
-    color: rgba(248, 252, 255, 255);
-    padding: 10px;
-    border-radius: 20px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border: 2px solid rgba(248, 252, 255, 255);
-}
-
-.subpage-btn:hover {
-    background-color: rgba(248, 252, 255, 255);
-    color: rgba(2, 19, 98, 255);
-}
-
 
 
 @media (max-width: 600px) {

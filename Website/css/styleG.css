@@ -19,6 +19,15 @@ body {
     margin: 10px;
 }
 
+.guide {
+    display: flex;
+    margin-left: 38%;
+    margin-right: 13%;
+}
+
+
+
+
 .header {
     display: flex;
     background-color: rgba(2, 19, 98, 255);
@@ -30,11 +39,7 @@ body {
     height: 10vh;
 }
 
-.guide {
-    display: flex;
-    margin-left: 38%;
-    margin-right: 13%;
-}
+
 
 .subpage-btn {
     display: inline-block;
@@ -48,6 +53,8 @@ body {
     transition: background-color 0.3s, color 0.3s;
     border: 2px solid rgba(248, 252, 255, 255);
 }
+
+
 
 .subpage-btn:hover {
     background-color: rgba(248, 252, 255, 255);
