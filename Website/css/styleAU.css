@@ -89,7 +89,7 @@ body {
     flex-direction: row;
     justify-content: center;
     width: 60%;
-    padding-top: 40px;
+    padding-top: 80px;
 }
 
 .katka{
@@ -103,7 +103,7 @@ body {
     border-radius: 12px; 
     padding: 10px;  
     width: 370px; 
-    height: 635px; 
+    height: 235px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
