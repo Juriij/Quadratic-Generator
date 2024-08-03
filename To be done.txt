@@ -11,7 +11,10 @@ STU-project to be done:
   -> Close the open subplots when the Explanation Window gets closed.        ✅(Juro)
   -> Close the Explanation Window when new expression has been chosen in the Main Window ✅(Juro)
   -> Disable the Show Explanation button when "all" is selected in the dropdown menu ✅(Juro)
-  -> Finish the function
+  -> Finish the function ✅(Katka)
+  -> Delete explanation button for inqualities
+  -> Resolve canvas multiplication - close them
+  -> Connect explanation window to the main method
 
 
 3. Printing problems Window  ✅(Juro)
@@ -26,4 +29,3 @@ STU-project to be done:
 2. Fill in actual information
 
 3. Activate download button
-
