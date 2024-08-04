@@ -24,14 +24,14 @@ class SecondWindow(QWidget):
         container_layout = QVBoxLayout(container_widget)
         
 
-        if self.method == "discriminant":
+        if self.method == "Discriminant":
             self.canvases = self.problem.Discriminant()   
 
-        elif self.method == "factoring":
+        elif self.method == "Factoring":
             self.canvases = self.problem.Factoring() 
 
-        elif self.method == "square":
-            self.canvases = self.problem.Square()   
+        elif self.method == "Square":
+            self.canvases = self.problem.Square()
 
 
 
