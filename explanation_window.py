@@ -24,9 +24,18 @@ class SecondWindow(QWidget):
         container_layout = QVBoxLayout(container_widget)
         
 
-        canvases = self.problem.Discriminant()   ############## To be changed
+        if self.method == "discriminant":
+            self.canvases = self.problem.Discriminant()   
 
-        for canvas in canvases:
+        elif self.method == "factoring":
+            self.canvases = self.problem.Factoring() 
+
+        elif self.method == "square":
+            self.canvases = self.problem.Square()   
+
+
+
+        for canvas in self.canvases:
             container_layout.addWidget(canvas)
 
             
@@ -45,18 +54,16 @@ class SecondWindow(QWidget):
         self.resize(self.width, self.height)
 
 
-    def close_figs(self, method):      # AFTER REDOING THE OTHER METHODS AND CREATING NEW SUBPLOTS,                                         
-        if method == "discriminant":   # DON'T FORGET TO CLOSE THEM ACCORDINGLY
-            for i in range(1,4):
-                plt.close(i)            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                                        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                                        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                                        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    def close_figs(self):
+        for i in range(len(self.canvases)):
+            plt.close(i)                                               
+
+
     
 
     def closeEvent(self, event):       ####### Method is called when window is closed ##########
         print("Explanation Window closed!")
-        self.close_figs(self.method)    
+        self.close_figs()    
         self.close()                            
         self.deleteLater()         
         super().closeEvent(event)               
@@ -71,12 +78,12 @@ if __name__ == '__main__':
     for monitor in get_monitors():
         m = monitor
 
-    problem = Equation("incomplete")
+    problem = Equation("complete")
     problem.equation_genr(False)
 
     app = QApplication(sys.argv)
 
     # Example instantiation of SecondWindow
-    window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem,"square")
+    window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem, "discriminant")
     window.show()
     sys.exit(app.exec_())
