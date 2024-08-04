@@ -68,7 +68,7 @@ class MainWindow(QMainWindow):
         self.gen_btn.move(self.gen_btn_size[0], self.gen_btn_size[1])
         self.gen_btn.setFixedSize(self.gen_btn_size[2], self.gen_btn_size[3])
         self.gen_btn.setFont(QFont("Helvetica [Cronyx]", 14, QFont.Bold))
-        self.gen_btn.clicked.connect(self.expWindow)
+        self.gen_btn.clicked.connect(self.exprWindow)
         self.gen_btn.adjustSize()
         self.gen_btn.hide()   
 
@@ -106,7 +106,7 @@ class MainWindow(QMainWindow):
         
                 
 
-    def expWindow(self):
+    def exprWindow(self):
         try:
             int(self.input_field.text())
 
@@ -162,15 +162,15 @@ class MainWindow(QMainWindow):
                     self.solution_btn.clicked.connect(self.toggle_solution)
 
                         
-
-                    self.explanation_btn = QPushButton(self) 
-                    self.explanation_btn.setText("Explanation")
-                    self.explanation_btn.setFixedSize(150,70)
-                    self.explanation_btn.move(int(self.Width*0.82), int(self.Height*0.18))
-                    self.explanation_btn.setFont(QFont("Arial", 10, QFont.Bold))
-                    self.explanation_btn.adjustSize() 
-                    self.explanation_btn.clicked.connect(self.show_explanation)
-                    self.explanation_btn.show()
+                    if not self.hide_explanation:
+                        self.explanation_btn = QPushButton(self) 
+                        self.explanation_btn.setText("Explanation")
+                        self.explanation_btn.setFixedSize(150,70)
+                        self.explanation_btn.move(int(self.Width*0.82), int(self.Height*0.18))
+                        self.explanation_btn.setFont(QFont("Arial", 10, QFont.Bold))
+                        self.explanation_btn.adjustSize() 
+                        self.explanation_btn.clicked.connect(self.show_explanation)
+                        self.explanation_btn.show()
 
 
                     self.home_btn = QPushButton(self) 
@@ -253,6 +253,7 @@ class MainWindow(QMainWindow):
         self.input_field.setPlaceholderText("Amount")
 
         if type == "Equation":
+            self.hide_explanation = False
             self.x_error2 = self.eq_btn_size[0]-155
             self.y_error2 = self.eq_btn_size[1]-20
 
@@ -273,6 +274,7 @@ class MainWindow(QMainWindow):
 
 
         elif type=="Inequality":
+            self.hide_explanation = True
             self.x_error2 = self.ineq_btn_size[0]+210
             self.y_error2 = self.ineq_btn_size[1]-20
 
