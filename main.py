@@ -94,6 +94,7 @@ class MainWindow(QMainWindow):
         #Dropdown
         self.comboBox = QComboBox(self)
         self.DDMplaceholder = "Type of equation..."
+        self.MTHDplaceholder = "Method..."
 
         self.comboBox.hide()
 
@@ -130,6 +131,8 @@ class MainWindow(QMainWindow):
                     self.eq_dropdown.addItem("Select expression")
                     self.eq_dropdown.setCurrentIndex(0)
                     self.eq_dropdown.model().item(0).setEnabled(False)
+
+                    
                     
                     ordinals = []
                     for i in range(amount):
@@ -172,6 +175,21 @@ class MainWindow(QMainWindow):
                         self.explanation_btn.clicked.connect(self.show_explanation)
                         self.explanation_btn.show()
 
+##################################################################################################################
+                        self.mthd_dropdown = QComboBox(self)
+                        self.mthd_dropdown.clear()
+                        self.mthd_dropdown.addItem(self.MTHDplaceholder)
+                        self.mthd_dropdown.setCurrentIndex(0)
+                        self.mthd_dropdown.addItem("Discriminant")
+                        self.mthd_dropdown.addItem("Factoring")
+                        self.mthd_dropdown.addItem("Square")
+                        self.mthd_dropdown.model().item(0).setEnabled(False)
+
+                        button_position = self.explanation_btn.pos()
+                        self.mthd_dropdown.setGeometry(button_position.x(), button_position.y() + self.explanation_btn.height(), self.explanation_btn.width(), self.mthd_dropdown.sizeHint().height())
+
+                        self.mthd_dropdown.show()
+###################################################################################################################
 
                     self.home_btn = QPushButton(self) 
                     self.home_btn.setText("Home")
@@ -381,6 +399,17 @@ class MainWindow(QMainWindow):
             self.error4.move(int(self.eq_dropdown.x()-self.Width//5.5), int(self.eq_dropdown.y()+self.Height//100))
             self.error4.show()
 
+    def mthd_empty_error(self):
+        self.error5 = QLabel('Please select the method of explanation', self)
+        self.error5.setFont(QFont("Arial", 11))
+        self.error5.adjustSize()
+        self.error5.setStyleSheet("QLabel { color : red; }")
+        self.error5.move(int(self.mthd_dropdown.x()-self.Width//5.5+40), int(self.mthd_dropdown.y()+self.Height//100+25))
+        self.error5.show()
+
+    def mthd_empty_error_resolved(self):
+        self.error5.deleteLater()
+
 
     def selection_error_resolved(self):
         self.error4.deleteLater()
@@ -389,16 +418,23 @@ class MainWindow(QMainWindow):
 
     def show_explanation(self):
         if self.exp_selected:
-            # Testing instantiation of the explanation window
-            if (not self.is_win_open("Explanation")) and (not self.eq_dropdown.currentText() == "All"):
-                print("instance created")
-                index = self.eq_dropdown.currentIndex()-1
-                self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[index],"discriminant")
-                self.scwindow.show()
+            if not self.mthd_dropdown.currentText() == self.MTHDplaceholder:
+                try:
+                    self.mthd_empty_error_resolved()
+                except:
+                    pass
+                # Testing instantiation of the explanation window
+                if (not self.is_win_open("Explanation")) and (not self.eq_dropdown.currentText() == "All"):
+                    print("instance created")
+                    index = self.eq_dropdown.currentIndex()-1
+                    method = self.mthd_dropdown.currentText()
+                    self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[index], method)
+                    self.scwindow.show()
 
+                else:
+                    print("Cant create an instance of Explanation win")
             else:
-                print("Cant create an instance of Explanation win")
-
+                self.mthd_empty_error()
         else:
             self.selection_error()
 
