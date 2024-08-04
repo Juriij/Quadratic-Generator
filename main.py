@@ -393,7 +393,7 @@ class MainWindow(QMainWindow):
             if (not self.is_win_open("Explanation")) and (not self.eq_dropdown.currentText() == "All"):
                 print("instance created")
                 index = self.eq_dropdown.currentIndex()-1
-                self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[index],"discriminant")
+                self.scwindow = SecondWindow(int(m.width*0.4),int(m.height*0.6), self.problems[index],"discriminant")
                 self.scwindow.show()
 
             else:

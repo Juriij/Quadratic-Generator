@@ -735,7 +735,7 @@ class Inequality (Equation):
 
 
                                                          # this function will be called in the
-                                                         # expWindow method
+                                                         # exprWindow method
 def genr_expression(expression, amount, type=False):
     problems = []
 

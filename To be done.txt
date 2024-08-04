@@ -13,9 +13,10 @@ STU-project to be done:
   -> Disable the Show Explanation button when "all" is selected in the dropdown menu ✅(Juro)
   -> Finish the function ✅(Katka)
   -> Resolve canvas multiplication - close them ✅(Katka)
-  -> Delete explanation button for inqualities  ✅(Juro)
+  -> Delete explanation button for inqualities   ✅(Juro)
+  -> Connect explanation window to the main method ✅(Juro)
   -> Add dropdown menu for method for explanation
-  -> Connect explanation window to the main method
+  
 
 
 3. Printing problems Window  ✅(Juro)
