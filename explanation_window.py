@@ -28,6 +28,7 @@ class SecondWindow(QWidget):
 
         for canvas in canvases:
             container_layout.addWidget(canvas)
+
             
 
         # Set the container widget as the widget for the scroll area
@@ -70,12 +71,12 @@ if __name__ == '__main__':
     for monitor in get_monitors():
         m = monitor
 
-    problem = Equation("complete")
-    problem.equation_genr("complete")
+    problem = Equation("incomplete")
+    problem.equation_genr(False)
 
     app = QApplication(sys.argv)
 
     # Example instantiation of SecondWindow
-    window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem,"discriminant")
+    window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem,"square")
     window.show()
     sys.exit(app.exec_())
