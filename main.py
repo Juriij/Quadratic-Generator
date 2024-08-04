@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
         self.label.show()
 
 
-        # Buttons                        <---------- perhaps, later can be automated
+
         self.eq_btn = QPushButton(self) #
         self.eq_btn.setText("Equation")
         self.eq_btn_size = (self.Width // 2 - self.eq_btn.width() - 140, self.Height // 2 -30, 180, 100)  #x ,y ,width, height
@@ -175,7 +175,7 @@ class MainWindow(QMainWindow):
                         self.explanation_btn.clicked.connect(self.show_explanation)
                         self.explanation_btn.show()
 
-##################################################################################################################
+
                         self.mthd_dropdown = QComboBox(self)
                         self.mthd_dropdown.clear()
                         self.mthd_dropdown.addItem(self.MTHDplaceholder)
@@ -189,7 +189,6 @@ class MainWindow(QMainWindow):
                         self.mthd_dropdown.setGeometry(button_position.x(), button_position.y() + self.explanation_btn.height(), self.explanation_btn.width(), self.mthd_dropdown.sizeHint().height())
 
                         self.mthd_dropdown.show()
-###################################################################################################################
 
                     self.home_btn = QPushButton(self) 
                     self.home_btn.setText("Home")
@@ -423,16 +422,15 @@ class MainWindow(QMainWindow):
                     self.mthd_empty_error_resolved()
                 except:
                     pass
-                # Testing instantiation of the explanation window
+
                 if (not self.is_win_open("Explanation")) and (not self.eq_dropdown.currentText() == "All"):
-                    print("instance created")
                     index = self.eq_dropdown.currentIndex()-1
                     method = self.mthd_dropdown.currentText()
-                    self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[index], method)
+                    self.scwindow = SecondWindow(int(m.width*0.4),int(m.height*0.6), self.problems[index], method)
                     self.scwindow.show()
 
                 else:
-                    print("Cant create an instance of Explanation win")
+                    pass
             else:
                 self.mthd_empty_error()
         else:

@@ -15,7 +15,7 @@ STU-project to be done:
   -> Resolve canvas multiplication - close them ✅(Katka)
   -> Delete explanation button for inqualities   ✅(Juro)
   -> Connect explanation window to the main method ✅(Juro)
-  -> Add dropdown menu for method for explanation
+  -> Add dropdown menu for method for explanation  ✅(Katka)
   
 
 
