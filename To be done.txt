@@ -12,8 +12,9 @@ STU-project to be done:
   -> Close the Explanation Window when new expression has been chosen in the Main Window ✅(Juro)
   -> Disable the Show Explanation button when "all" is selected in the dropdown menu ✅(Juro)
   -> Finish the function ✅(Katka)
+  -> Resolve canvas multiplication - close them ✅(Katka)
   -> Delete explanation button for inqualities
-  -> Resolve canvas multiplication - close them
+  -> Add dropdown menu for method for explanation
   -> Connect explanation window to the main method
 
 

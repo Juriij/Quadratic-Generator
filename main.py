@@ -183,8 +183,6 @@ class MainWindow(QMainWindow):
                     self.home_btn.clicked.connect(self.return_menu)   
                     self.home_btn.show()
 
-                    ### print button (print it!)
-
                     self.print_btn = QPushButton(self) 
                     self.print_btn.setText("print it!")
                     self.print_btn_size = (self.Width // 2 +60, self.Height // 2 -30, 180, 100)
@@ -235,8 +233,8 @@ class MainWindow(QMainWindow):
 
     
     def close_win(self, win):
-        self.scwindow.close_figs("discriminant")   # <----   LATER TO BE CHANGE ACCORDING  
-        win.close()                                #####     TO THE METHOD THAT WAS CHOSEN 
+        self.scwindow.close_figs()  
+        win.close()                               
         win.deleteLater() 
         win = None
 
@@ -392,7 +390,8 @@ class MainWindow(QMainWindow):
             # Testing instantiation of the explanation window
             if (not self.is_win_open("Explanation")) and (not self.eq_dropdown.currentText() == "All"):
                 print("instance created")
-                self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[0],"discriminant")
+                index = self.eq_dropdown.currentIndex()-1
+                self.scwindow = SecondWindow(int(m.width*0.6),int(m.height*0.8), self.problems[index],"discriminant")
                 self.scwindow.show()
 
             else:

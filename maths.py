@@ -750,7 +750,7 @@ def genr_expression(expression, amount, type=False):
     for problem in problems:
         if expression == "Equation":
             if type == "complete":
-                problem.equation_genr(True)        
+                problem.equation_genr(False)        
             elif type == "incomplete":
                 problem.equation_genr(False)
 
