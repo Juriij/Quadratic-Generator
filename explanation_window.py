@@ -24,7 +24,7 @@ class SecondWindow(QWidget):
         container_layout = QVBoxLayout(container_widget)
         
 
-        canvases = self.problem.Discriminant()   
+        canvases = self.problem.Discriminant()   ############## To be changed
 
         for canvas in canvases:
             container_layout.addWidget(canvas)
