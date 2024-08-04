@@ -1,3 +1,4 @@
+
 body {
     font-family: Kanit;
     margin: 0;
@@ -10,6 +11,7 @@ body {
 }
 
 .container {
+
     display: flex;
     width: 90%;
     justify-content: center;
@@ -17,6 +19,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 10px;
+
 }
 
 .guide {
@@ -87,6 +90,7 @@ body {
     display: flex;
     width: 40%; /* Increase the width */
     height: 45vh; /* Adjust height to be auto */
+
     background-color: white;
     justify-content: center;
     align-items: center;
