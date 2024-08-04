@@ -1,5 +1,3 @@
-
-
 STU-project to be done:
 
 - App:
@@ -20,7 +18,7 @@ STU-project to be done:
 
 3. Printing problems Window  ✅(Juro)
 
-4. Conversion to an .exe file
+4. Conversion to an .exe file  ✅(Juro, Katka)
 
 
 - Website:
