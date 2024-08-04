@@ -10,10 +10,43 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 class Expression:
 
     def Discriminant(self):
-        fig1, ax1 = plt.subplots()
+        fig0, ax0 = plt.subplots()
         y = 0.9
 
         canvas_list = []
+
+        ax0.text(0.4, y, f'Equation: ', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.20
+
+        x = sp.symbols("x")
+        self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
+        latex_equation = sp.latex(self.equation)
+
+        ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.20
+
+        ax0.text(0.4, y, f'${'a = '+ str(self.a)}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        ax0.text(0.4, y, f'${'b = '+ str(self.b)}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        ax0.text(0.4, y, f'${'c = '+ str(self.c)}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        ax0.set_xlim(0, 1)
+        ax0.set_ylim(0, 1)
+
+        # Remove axes
+        ax0.axis('off')
+        canvas0 = FigureCanvas(fig0)
+        canvas_list.append(canvas0)
+        
+
+
+        fig1, ax1 = plt.subplots()
+        y = 0.9
+
 
 
         ax1.text(0.4, y, 'Calculation of discriminant:', ha="center", va="center", fontsize=20, color="black")
@@ -171,10 +204,11 @@ class Expression:
             canvas_list.append(canvas1)
             return canvas_list
         
-############################################
 
 
-    def Factoring(self, SOLUTION):
+    def Factoring(self):
+        SOLUTION = []
+        SOLUTION = self.solution
         if len(SOLUTION)>1:
             self.x1, self.x2 = SOLUTION
             self.p = -(self.x1)
@@ -186,25 +220,111 @@ class Expression:
             q = sp.symbols("q")
             x1 = sp.symbols("x1")
             x2 = sp.symbols("x2")
-            show_rootage = sp.Eq((x1+p)*(x2+q), 0)
-            show_b = sp.Eq(b, p+q)
-            show_c = sp.Eq(c, p*q)
-            rootage = sp.Eq((x1+self.p)*(x2+self.q), 0)
-            show_x1 = sp.Eq(x1+self.p,0)
-            sol_x1 = sp.Eq(x1,self.x1)
-            show_x2 = sp.Eq(x2+self.q,0)
-            sol_x2 = sp.Eq(x2,self.x2)
 
-            sp.pprint(show_rootage)
-            sp.pprint(show_b)
-            sp.pprint(show_c)
-            sp.pprint(rootage)
-            sp.pprint(show_x1)
-            sp.pprint(sol_x1)
-            sp.pprint(show_x2)
-            sp.pprint(sol_x2)
+            fig0, ax0 = plt.subplots()
+            y = 0.9
+
+            canvas_list = []
+
+            ax0.text(0.4, y, f'Equation: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            x = sp.symbols("x")
+            self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
+            latex_equation = sp.latex(self.equation)
+
+            ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            ax0.text(0.4, y, f'${'a = '+ str(self.a)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.text(0.4, y, f'${'b = '+ str(self.b)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.text(0.4, y, f'${'c = '+ str(self.c)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.set_xlim(0, 1)
+            ax0.set_ylim(0, 1)
+
+            # Remove axes
+            ax0.axis('off')
+            canvas0 = FigureCanvas(fig0)
+            canvas_list.append(canvas0)
+            
+
+            fig1, ax1 = plt.subplots()
+            y = 0.7
+
+            ax1.text(0.4, y, f'Factoring formulas: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            show_rootage = sp.Eq((x1+p)*(x2+q), 0)
+            show_rootage = sp.latex(show_rootage)
+            ax1.text(0.4, y, f'${str(show_rootage)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.2
+
+            show_b = sp.Eq(b, p+q)
+            show_b = sp.latex(show_b)
+            ax1.text(0.4, y, f'${str(show_b)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
+            show_c = sp.Eq(c, p*q)
+            show_c = sp.latex(show_c)
+            ax1.text(0.4, y, f'${str(show_c)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
+
+            ax1.set_xlim(0, 1)
+            ax1.set_ylim(0, 1)
+
+            # Remove axes
+            ax1.axis('off')
+            canvas1 = FigureCanvas(fig1)
+            canvas_list.append(canvas1)
+
+            fig2, ax2 = plt.subplots()
+            y = 0.9
+
+            ax2.text(0.4, y, f'Solutions: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.17
+
+            rootage = sp.Eq((x1+self.p)*(x2+self.q), 0)
+            rootage = sp.latex(rootage)
+            ax2.text(0.4, y, f'${str(rootage)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.2
+
+            show_x1 = sp.Eq(x1+self.p,0)
+            show_x1 = sp.latex(show_x1)
+            ax2.text(0.4, y, f'${str(show_x1)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
+            sol_x1 = sp.Eq(x1,self.x1)
+            sol_x1 = sp.latex(sol_x1)
+            ax2.text(0.4, y, f'${str(sol_x1)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.3
+
+            show_x2 = sp.Eq(x2+self.q,0)
+            show_x2 = sp.latex(show_x2)
+            ax2.text(0.4, y, f'${str(show_x2)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
+            sol_x2 = sp.Eq(x2,self.x2)
+            sol_x2 = sp.latex(sol_x2)
+            ax2.text(0.4, y, f'${str(sol_x2)}$', ha="center", va="center", fontsize=20, color="black")
+
+            ax2.set_xlim(0, 1)
+            ax2.set_ylim(0, 1)
+
+            # Remove axes
+            ax2.axis('off')
+            canvas2 = FigureCanvas(fig2)
+            canvas_list.append(canvas2)
+
 
         else:
+            SOLUTION = []
             SOLUTION.append(0)
             self.x = SOLUTION[0]
             SOLUTION.pop()
@@ -218,53 +338,243 @@ class Expression:
             q = sp.symbols("q")
             x = sp.symbols("x")
 
+        
+
+            fig0, ax0 = plt.subplots()
+            y = 0.9
+
+            canvas_list = []
+
+            ax0.text(0.4, y, f'Equation: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            x = sp.symbols("x")
+            self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
+            latex_equation = sp.latex(self.equation)
+
+            ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            ax0.text(0.4, y, f'${'a = '+ str(self.a)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.text(0.4, y, f'${'b = '+ str(self.b)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.text(0.4, y, f'${'c = '+ str(self.c)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.set_xlim(0, 1)
+            ax0.set_ylim(0, 1)
+
+            # Remove axes
+            ax0.axis('off')
+            canvas0 = FigureCanvas(fig0)
+            canvas_list.append(canvas0)
+            
+
+            fig1, ax1 = plt.subplots()
+            y = 0.9
+
+            ax1.text(0.4, y, f'Factoring formulas: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+
+
             show_rootage = sp.Eq((x+p)*(x+q), 0)
+            show_rootage = sp.latex(show_rootage)
+            ax1.text(0.4, y, f'${str(show_rootage)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
             show_b = sp.Eq(b, p+q)
+            show_b = sp.latex(show_b)
+            ax1.text(0.4, y, f'${str(show_b)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
             show_c = sp.Eq(c, p*q)
+            show_c = sp.latex(show_c)
+            ax1.text(0.4, y, f'${str(show_c)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
+            ax1.set_xlim(0, 1)
+            ax1.set_ylim(0, 1)
+
+            # Remove axes
+            ax1.axis('off')
+            canvas1 = FigureCanvas(fig1)
+            canvas_list.append(canvas1)
+
+            fig2, ax2 = plt.subplots()
+            y = 0.9
+
+            ax2.text(0.4, y, f'Solutions: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.17
+
             rootage = sp.Eq((x+self.p)*(x+self.q), 0)
+            rootage = sp.latex(rootage)
+            ax2.text(0.4, y, f'${str(rootage)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
             show_x1 = sp.Eq(x+self.p,0)
+            show_x1 = sp.latex(show_x1)
+            ax2.text(0.4, y, f'${str(show_x1)}$', ha="center", va="center", fontsize=20, color="black")
+            y -= 0.15
+
             sol_x1 = sp.Eq(x,self.x)
-
-            sp.pprint(show_rootage)
-            sp.pprint(show_b)
-            sp.pprint(show_c)
-            sp.pprint(rootage)
-            sp.pprint(show_x1)
-            sp.pprint(sol_x1)
+            sol_x1 = sp.latex(sol_x1)
+            ax2.text(0.4, y, f'${str(sol_x1)}$', ha="center", va="center", fontsize=20, color="black")
 
 
+            ax2.set_xlim(0, 1)
+            ax2.set_ylim(0, 1)
+
+            # Remove axes
+            ax2.axis('off')
+            canvas2 = FigureCanvas(fig2)
+            canvas_list.append(canvas2)
+
+        return canvas_list
 
 
-    def Square(self, EQUATION):
-        x = sp.symbols("x")
 
-        c = self.c
-        b = self.b
-        b2 = b/2
 
-        if self.a != 1:
-            c = self.c/self.a
-            b = self.b/self.a
+    def Square(self):
+        try:
+            EQUATION = self.equation
+            x = sp.symbols("x")
+            
+
+            if self.a != 1:
+                c = self.c/self.a
+                b = self.b/self.a
+
+            else:
+                c = self.c
+                b = self.b
+
             b2 = b/2
 
-        equation1 = sp.Eq((self.a*x**2 + self.b*x + self.c)/self.a, 0)
+            fig0, ax0 = plt.subplots()
+            y = 0.9
 
-        sp.pprint (EQUATION)
-        if self.a != 1:
-            sp.pprint(equation1)
+            canvas_list = []
 
-        if c>=0:
-            print(f"x**2 + {b*x} + {b2**2} - {b2**2} + {c} = 0")
-        else:
-            print(f"x**2 + {b*x} + {b2**2} - {b2**2} {c} = 0")
+            ax0.text(0.4, y, f'Equation: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
 
-        print(f"(x+{b2})**2 { - b2**2 + c}"," = ",0)
-        print(f"(x+{b2})**2  = { b2**2 - c}")
-        print(f"(x+{b2}) = - {round(float((sp.sqrt(b2**2 - c))),2)}")
-        print(f"(x+{b2}) = {round(float((sp.sqrt(b2**2 - c))),2)}")
-        print(f"x1 = { round(float(-(sp.sqrt(b2**2 - c)) - b2),1)}")
-        print(f"x2 = { round(float((sp.sqrt(b2**2 - c)) - b2), 1)}")
+            x = sp.symbols("x")
+            self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
+            latex_equation = sp.latex(self.equation)
 
+            ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            ax0.text(0.4, y, f'${'a = '+ str(self.a)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.text(0.4, y, f'${'b = '+ str(self.b)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.text(0.4, y, f'${'c = '+ str(self.c)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax0.set_xlim(0, 1)
+            ax0.set_ylim(0, 1)
+
+            # Remove axes
+            ax0.axis('off')
+            canvas0 = FigureCanvas(fig0)
+            canvas_list.append(canvas0)
+
+
+
+            fig1, ax1 = plt.subplots()
+            y = 0.9
+
+            spx = sp.symbols(f'{x}')
+            spa = sp.symbols(f'{self.a}')
+            spb = sp.symbols(f'{self.b}')
+            spc = sp.symbols(f'{self.c}')
+
+            ax1.text(0.4, y, f'Square: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+
+            if self.a != 1:
+                equation1 = sp.Eq((spa*spx**2 + spb*spx + spc)/spa, 0)
+                equation1 = sp.latex(equation1)
+                ax1.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.15
+
+
+            b22 = sp.symbols(f'{b2**2}')
+            devided = sp.Eq(x**2 + b*x + b22, b22 + c*-1)
+            devided = sp.latex(devided)
+            ax1.text(0.4, y, f'${devided}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            b_2 = sp.symbols(f'{b2}')
+            square = sp.Eq((x+b_2)**2, b2**2 - c)
+            square = sp.latex(square)
+            ax1.text(0.4, y, f'${square}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax1.set_xlim(0, 1)
+            ax1.set_ylim(0, 1)
+
+            # Remove axes
+            ax1.axis('off')
+            canvas1 = FigureCanvas(fig1)
+            canvas_list.append(canvas1)
+
+
+
+
+            fig2, ax2 = plt.subplots()
+            y = 0.9
+
+            x1 = sp.symbols("x1")
+            x2 = sp.symbols("x2")
+
+            ax2.text(0.4, y, f'Calculation of roots:', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.2
+
+            first_line = sp.Eq((x1 + b2), (round(float((sp.sqrt(b2**2 - c))),2))*-1) 
+            first_line = sp.latex(first_line)
+            ax2.text(0.4, y, f'${first_line}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            if b != 0:
+                calc_x1 = sp.Eq(x1, round(float(-(sp.sqrt(b2**2 - c)) - b2),1))
+                calc_x1 = sp.latex(calc_x1)
+                ax2.text(0.4, y, f'${calc_x1}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.20
+
+
+            first_line = sp.Eq((x2 + b2), (round(float((sp.sqrt(b2**2 - c))),2)))
+            first_line = sp.latex(first_line)
+            ax2.text(0.4, y, f'${first_line}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+            
+            if b != 0:
+                calc_x2 = sp.Eq(x2, round(float((sp.sqrt(b2**2 - c)) - b2), 1))
+                calc_x2 = sp.latex(calc_x2)
+                ax2.text(0.4, y, f'${calc_x2}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.20
+
+            ax2.set_xlim(0, 1)
+            ax2.set_ylim(0, 1)
+
+            # Remove axes
+            ax2.axis('off')
+            canvas2 = FigureCanvas(fig2)
+            canvas_list.append(canvas2)
+
+            return canvas_list
+        
+        except TypeError:
+            return False
 
 
 
