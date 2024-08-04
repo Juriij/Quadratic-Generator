@@ -83,126 +83,114 @@ class Expression:
 
 
 
-        if D_list[0] >=0:
 
-            ax1.set_xlim(0, 1)
-            ax1.set_ylim(0, 1)
+        ax1.set_xlim(0, 1)
+        ax1.set_ylim(0, 1)
 
-        # Remove axes
-            ax1.axis('off')
+    # Remove axes
+        ax1.axis('off')
 
-            canvas1 = FigureCanvas(fig1)
+        canvas1 = FigureCanvas(fig1)
 
-            canvas_list.append(canvas1)
+        canvas_list.append(canvas1)
 
-            fig2, ax2 = plt.subplots(num=2)
-            y = 0.9
+        fig2, ax2 = plt.subplots()
+        y = 0.9
 
-            ax2.text(0.4, y, 'Calculation of x1: ', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
+        ax2.text(0.4, y, 'Calculation of x1: ', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
 
-            x1 = sp.symbols("x1")
+        x1 = sp.symbols("x1")
 
-            show_solution1 = sp.Eq(x1, (-b -(sp.sqrt(D)))/(2*a))
-            show_solution1 = sp.latex(show_solution1)
-            ax2.text(0.4, y, f'${show_solution1}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
-
-
-            _b = sp.symbols(f'{-self.b}')
-            rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
-            denominator = sp.symbols(f'{2*self.a}')   
-
-            solution1 = sp.Eq(x1, (_b - rootD)/(denominator))
-            solution1 = sp.latex(solution1)
-            ax2.text(0.4, y, f'${solution1}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
-
-            numerator = sp.symbols(f'{-self.b -(sp.sqrt(D_list[0]))}') 
-            denominator = sp.symbols(f'{2*self.a}')
-
-            show_solution1 = sp.Eq(x1, numerator/denominator)
-            show_solution1 = sp.latex(show_solution1)
-
-            ax2.text(0.4, y, f'${str(show_solution1)}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.3
-
-            solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*self.a))
-            x1_list = sp.solve(solution1)
-            solution1 = sp.latex(solution1)
-            ax2.text(0.4, y, f'${str(solution1)}$', ha="center", va="center", fontsize=20, color="black")
+        show_solution1 = sp.Eq(x1, (-b -(sp.sqrt(D)))/(2*a))
+        show_solution1 = sp.latex(show_solution1)
+        ax2.text(0.4, y, f'${show_solution1}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
 
 
-            ax2.set_xlim(0, 1)
-            ax2.set_ylim(0, 1)
+        _b = sp.symbols(f'{-self.b}')
+        rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
+        denominator = sp.symbols(f'{2*self.a}')   
 
-        # Remove axes
-            ax2.axis('off')
-            canvas2 = FigureCanvas(fig2)
-            canvas_list.append(canvas2)
+        solution1 = sp.Eq(x1, (_b - rootD)/(denominator))
+        solution1 = sp.latex(solution1)
+        ax2.text(0.4, y, f'${solution1}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
 
-            fig3, ax3 = plt.subplots(num=3)
-            y = 0.9
+        numerator = sp.symbols(f'{-self.b -(sp.sqrt(D_list[0]))}') 
+        denominator = sp.symbols(f'{2*self.a}')
 
-            ax3.text(0.4, y, 'Calculation of x2: ', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
+        show_solution1 = sp.Eq(x1, numerator/denominator)
+        show_solution1 = sp.latex(show_solution1)
 
-            x2 = sp.symbols("x2")
+        ax2.text(0.4, y, f'${str(show_solution1)}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.3
 
-            show_solution2 = sp.Eq(x2, (-b +(sp.sqrt(D)))/(2*a))
-            show_solution2 = sp.latex(show_solution2)
-            ax3.text(0.4, y, f'${str(show_solution2)}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
-
-            solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
-
-            _b = sp.symbols(f'{-self.b}')
-            rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
-            denominator = sp.symbols(f'{2*self.a}')   
-
-            solution2 = sp.Eq(x2, (_b + rootD)/(denominator))
-            solution2 = sp.latex(solution2)
-            ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
-
-            numerator = sp.symbols(f'{-self.b +(sp.sqrt(D_list[0]))}') 
-            denominator = sp.symbols(f'{2*self.a}')
-
-            show_solution2 = sp.Eq(x2, numerator/denominator)
-            show_solution2 = sp.latex(show_solution2)
-            ax3.text(0.4, y, f'${show_solution2}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.3
-
-            solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
-            x2_list = sp.solve(solution2)
-            solution2 = sp.latex(solution2)
-            ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
-
-            ax3.set_xlim(0, 1)
-            ax3.set_ylim(0, 1)
-
-        # Remove axes
-            ax3.axis('off')
+        solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*self.a))
+        x1_list = sp.solve(solution1)
+        solution1 = sp.latex(solution1)
+        ax2.text(0.4, y, f'${str(solution1)}$', ha="center", va="center", fontsize=20, color="black")
 
 
-            canvas3 = FigureCanvas(fig3)
-            canvas_list.append(canvas3)
-            return canvas_list
+        ax2.set_xlim(0, 1)
+        ax2.set_ylim(0, 1)
+
+    # Remove axes
+        ax2.axis('off')
+        canvas2 = FigureCanvas(fig2)
+        canvas_list.append(canvas2)
+
+
+
+
+        fig3, ax3 = plt.subplots()
+        y = 0.9
+
+        ax3.text(0.4, y, 'Calculation of x2: ', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        x2 = sp.symbols("x2")
+
+        show_solution2 = sp.Eq(x2, (-b +(sp.sqrt(D)))/(2*a))
+        show_solution2 = sp.latex(show_solution2)
+        ax3.text(0.4, y, f'${str(show_solution2)}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
+
+        _b = sp.symbols(f'{-self.b}')
+        rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
+        denominator = sp.symbols(f'{2*self.a}')   
+
+        solution2 = sp.Eq(x2, (_b + rootD)/(denominator))
+        solution2 = sp.latex(solution2)
+        ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        numerator = sp.symbols(f'{-self.b +(sp.sqrt(D_list[0]))}') 
+        denominator = sp.symbols(f'{2*self.a}')
+
+        show_solution2 = sp.Eq(x2, numerator/denominator)
+        show_solution2 = sp.latex(show_solution2)
+        ax3.text(0.4, y, f'${show_solution2}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.3
+
+        solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
+        x2_list = sp.solve(solution2)
+        solution2 = sp.latex(solution2)
+        ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
+
+        ax3.set_xlim(0, 1)
+        ax3.set_ylim(0, 1)
+
+    # Remove axes
+        ax3.axis('off')
+
+
+        canvas3 = FigureCanvas(fig3)
+        canvas_list.append(canvas3)
+        return canvas_list
         
-        else:
-            ax1.text(0.4, y, 'This equation has no solution', ha="center", va="center", fontsize=20, color="black")
-
-            
-            ax1.set_xlim(0, 1)
-            ax1.set_ylim(0, 1)
-
-        # Remove axes
-            ax1.axis('off')
-
-            canvas1 = FigureCanvas(fig1)
-
-            canvas_list.append(canvas1)
-            return canvas_list
         
 
 
