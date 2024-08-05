@@ -494,6 +494,13 @@ class Expression:
                 ax1.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
                 y = y - 0.15
 
+            _a_ = sp.symbols('a')
+            _b_ = sp.symbols('b')
+
+            equation1 = sp.Eq(_a_**2 + 2*_a_*_b_ + _b_**2 , (_a_ + _b_)**2)
+            equation1 = sp.latex(equation1)
+            ax1.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
 
             b22 = sp.symbols(f'{b2**2}')
             devided = sp.Eq(x**2 + b*x + b22, b22 + c*-1)
