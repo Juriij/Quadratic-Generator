@@ -84,6 +84,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # Example instantiation of SecondWindow
-    window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem, "square")
+    window = SecondWindow(int(m.width*0.6),int(m.height*0.8), problem, "Square")
     window.show()
     sys.exit(app.exec_())
