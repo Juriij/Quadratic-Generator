@@ -2,7 +2,7 @@ import maths as math
 import sys
 from functools import partial
 import sympy as sp
-from PyQt5.QtCore import QSize, QTimer
+from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QApplication, QWidget, QComboBox, QLabel, QPushButton
@@ -240,7 +240,7 @@ class MainWindow(QMainWindow):
                 widget.deleteLater()
 
     def close_fig(self):
-        plt.close(0)
+        plt.close(100)
     
 
     def return_menu(self):

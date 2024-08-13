@@ -823,30 +823,30 @@ def genr_expression(expression, amount, type=False):
 
 
 def render(problems, expression):
-    fig0, ax0 = plt.subplots(num=0)
+    fig, ax = plt.subplots(num=100)
     y = 1.021
 
     for problem in problems:
         if expression == "Equation":
             latex_form = sp.latex(problem.equation)
-            ax0.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.108
 
 
         elif expression == "Inequality":
             latex_form = sp.latex(problem.inequality)
-            ax0.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.108
 
     # Set plot limits
-    ax0.set_xlim(0, 1)
-    ax0.set_ylim(0, 1)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
 
     # Remove axes
-    ax0.axis('off')
+    ax.axis('off')
 
 
-    canvas = FigureCanvas(fig0)
+    canvas = FigureCanvas(fig)
     return canvas
 
 
