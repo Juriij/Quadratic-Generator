@@ -498,12 +498,11 @@ class Expression:
 
             _a_ = sp.symbols('a')
             _b_ = sp.symbols('b')
-            question_mark = sp.symbols('?')
 
             equation1 = sp.Eq(_a_**2 + 2*_a_*_b_ + _b_**2 , (_a_ + _b_)**2)
             equation1 = sp.latex(equation1)
             ax1.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
+            y = y - 0.2
 
             a2_eq = sp.Eq(_a_**2, x**2)
             a2_eq = sp.latex(a2_eq)
@@ -524,10 +523,6 @@ class Expression:
             ax1.text(0.4, y, f'${str(b2_eq)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ab2_eq = sp.Eq((_a_ + _b_)**2, question_mark)
-            ab2_eq = sp.latex(ab2_eq)
-            ax1.text(0.4, y, f'${str(ab2_eq)}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
 
             ax1.set_xlim(0, 1)
             ax1.set_ylim(0, 1)
