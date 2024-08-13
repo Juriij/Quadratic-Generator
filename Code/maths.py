@@ -1,8 +1,6 @@
 import sympy as sp
 import random
 import matplotlib.pyplot as plt
-
-import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 
@@ -10,7 +8,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 class Expression:
 
     def Discriminant(self):
-        fig0, ax0 = plt.subplots()
+        fig0, ax0 = plt.subplots(num=0)
         y = 0.9
 
         canvas_list = []
@@ -44,7 +42,7 @@ class Expression:
         
 
 
-        fig1, ax1 = plt.subplots()
+        fig1, ax1 = plt.subplots(num=1)
         y = 0.9
 
 
@@ -94,7 +92,7 @@ class Expression:
 
         canvas_list.append(canvas1)
 
-        fig2, ax2 = plt.subplots()
+        fig2, ax2 = plt.subplots(num=2)
         y = 0.9
 
         ax2.text(0.4, y, 'Calculation of x1: ', ha="center", va="center", fontsize=20, color="black")
@@ -143,7 +141,7 @@ class Expression:
 
 
 
-        fig3, ax3 = plt.subplots()
+        fig3, ax3 = plt.subplots(num=3)
         y = 0.9
 
         ax3.text(0.4, y, 'Calculation of x2: ', ha="center", va="center", fontsize=20, color="black")
@@ -209,7 +207,7 @@ class Expression:
             x1 = sp.symbols("x1")
             x2 = sp.symbols("x2")
 
-            fig0, ax0 = plt.subplots()
+            fig0, ax0 = plt.subplots(num=0)
             y = 0.9
 
             canvas_list = []
@@ -242,7 +240,7 @@ class Expression:
             canvas_list.append(canvas0)
             
 
-            fig1, ax1 = plt.subplots()
+            fig1, ax1 = plt.subplots(num=1)
             y = 0.7
 
             ax1.text(0.4, y, f'Factoring formulas: ', ha="center", va="center", fontsize=20, color="black")
@@ -272,7 +270,7 @@ class Expression:
             canvas1 = FigureCanvas(fig1)
             canvas_list.append(canvas1)
 
-            fig2, ax2 = plt.subplots()
+            fig2, ax2 = plt.subplots(num=2)
             y = 0.9
 
             ax2.text(0.4, y, f'Solutions: ', ha="center", va="center", fontsize=20, color="black")
@@ -328,7 +326,7 @@ class Expression:
 
         
 
-            fig0, ax0 = plt.subplots()
+            fig0, ax0 = plt.subplots(num=0)
             y = 0.9
 
             canvas_list = []
@@ -361,7 +359,7 @@ class Expression:
             canvas_list.append(canvas0)
             
 
-            fig1, ax1 = plt.subplots()
+            fig1, ax1 = plt.subplots(num=1)
             y = 0.9
 
             ax1.text(0.4, y, f'Factoring formulas: ', ha="center", va="center", fontsize=20, color="black")
@@ -392,7 +390,7 @@ class Expression:
             canvas1 = FigureCanvas(fig1)
             canvas_list.append(canvas1)
 
-            fig2, ax2 = plt.subplots()
+            fig2, ax2 = plt.subplots(num=2)
             y = 0.9
 
             ax2.text(0.4, y, f'Solutions: ', ha="center", va="center", fontsize=20, color="black")
@@ -442,7 +440,7 @@ class Expression:
 
             b2 = b/2
 
-            fig0, ax0 = plt.subplots()
+            fig0, ax0 = plt.subplots(num=0)
             y = 0.97
 
             canvas_list = []
@@ -490,7 +488,7 @@ class Expression:
             canvas0 = FigureCanvas(fig0)
             canvas_list.append(canvas0)
 
-            fig1, ax1 = plt.subplots()
+            fig1, ax1 = plt.subplots(num=1)
             y = 0.9
 
             ax1.text(0.4, y, f'Square formula: ', ha="center", va="center", fontsize=20, color="black")
@@ -534,7 +532,7 @@ class Expression:
             
 
 
-            fig2, ax2 = plt.subplots()
+            fig2, ax2 = plt.subplots(num=2)
             y = 0.9
 
             ax2.text(0.4, y, f'Calculation: ', ha="center", va="center", fontsize=20, color="black")
@@ -580,7 +578,7 @@ class Expression:
 
 
 
-            fig3, ax3 = plt.subplots()
+            fig3, ax3 = plt.subplots(num=3)
             y = 0.9
 
             x1 = sp.symbols("x1")
@@ -825,30 +823,30 @@ def genr_expression(expression, amount, type=False):
 
 
 def render(problems, expression):
-    fig, ax = plt.subplots()
+    fig0, ax0 = plt.subplots(num=0)
     y = 1.021
 
     for problem in problems:
         if expression == "Equation":
             latex_form = sp.latex(problem.equation)
-            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            ax0.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.108
 
 
         elif expression == "Inequality":
             latex_form = sp.latex(problem.inequality)
-            ax.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
+            ax0.text(0.3, y, f'${latex_form}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.108
 
     # Set plot limits
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
+    ax0.set_xlim(0, 1)
+    ax0.set_ylim(0, 1)
 
     # Remove axes
-    ax.axis('off')
+    ax0.axis('off')
 
 
-    canvas = FigureCanvas(fig)
+    canvas = FigureCanvas(fig0)
     return canvas
 
 
