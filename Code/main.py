@@ -11,6 +11,7 @@ from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from PyQt5.QtGui import QPixmap, QPainter
 from screeninfo import get_monitors
 from explanation_window import SecondWindow   
+import matplotlib.pyplot as plt
 
 dropdown = False
 
@@ -238,14 +239,19 @@ class MainWindow(QMainWindow):
             if widget is not self:  # Don't delete the main window
                 widget.deleteLater()
 
+    def close_fig(self):
+        plt.close(0)
+    
+
     def return_menu(self):
         if self.sol_shown:
             self.hide_solution()
 
         if self.is_win_open("Explanation"):                                                                  
             self.close_win(self.scwindow)                  
- 
-
+        
+         
+        self.close_fig()
         self.setupWindow()
 
     
