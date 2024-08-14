@@ -208,27 +208,44 @@ class Expression:
             x2 = sp.symbols("x2")
 
             fig0, ax0 = plt.subplots(num=0)
-            y = 0.9
+            y = 0.95
 
             canvas_list = []
 
             ax0.text(0.4, y, f'Equation: ', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.20
+            y = y - 0.17
 
             x = sp.symbols("x")
             self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
             latex_equation = sp.latex(self.equation)
-
             ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.20
+            y = y - 0.17
 
-            ax0.text(0.4, y, f'${'a = '+ str(self.a)}$', ha="center", va="center", fontsize=20, color="black")
+            spx = sp.symbols(f'{x}')
+            spa = sp.symbols(f'{self.a}')
+            spb = sp.symbols(f'{self.b}')
+            spc = sp.symbols(f'{self.c}')
+
+
+            if self.a != 1:
+                equation1 = sp.Eq((spa*spx**2 + spb*spx + spc)/spa, 0)
+                equation1 = sp.latex(equation1)
+                ax0.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.15
+
+                equation1 = sp.Eq((self.a*x**2 + self.b*x + self.c)/self.a, 0)
+                equation1 = sp.latex(equation1)
+                ax0.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.17
+
+
+            ax0.text(0.4, y, f'${'a = '+ str(1)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ax0.text(0.4, y, f'${'b = '+ str(self.b)}$', ha="center", va="center", fontsize=20, color="black")
+            ax0.text(0.4, y, f'${'b = '+ str(self.b/self.a)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ax0.text(0.4, y, f'${'c = '+ str(self.c)}$', ha="center", va="center", fontsize=20, color="black")
+            ax0.text(0.4, y, f'${'c = '+ str(self.c/self.a)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
             ax0.set_xlim(0, 1)
