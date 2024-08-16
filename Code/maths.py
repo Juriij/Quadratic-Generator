@@ -39,7 +39,7 @@ class Expression:
         ax0.axis('off')
         canvas0 = FigureCanvas(fig0)
         canvas_list.append(canvas0)
-        
+
 
 
         fig1, ax1 = plt.subplots(num=1)
@@ -108,14 +108,14 @@ class Expression:
 
         _b = sp.symbols(f'{-self.b}')
         rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
-        denominator = sp.symbols(f'{2*self.a}')   
+        denominator = sp.symbols(f'{2*self.a}')
 
         solution1 = sp.Eq(x1, (_b - rootD)/(denominator))
         solution1 = sp.latex(solution1)
         ax2.text(0.4, y, f'${solution1}$', ha="center", va="center", fontsize=20, color="black")
         y = y - 0.15
 
-        numerator = sp.symbols(f'{-self.b -(sp.sqrt(D_list[0]))}') 
+        numerator = sp.symbols(f'{-self.b -(sp.sqrt(D_list[0]))}')
         denominator = sp.symbols(f'{2*self.a}')
 
         show_solution1 = sp.Eq(x1, numerator/denominator)
@@ -125,7 +125,6 @@ class Expression:
         y = y - 0.3
 
         solution1 = sp.Eq(x1, (-self.b -(sp.sqrt(D_list[0])))/(2*self.a))
-        x1_list = sp.solve(solution1)
         solution1 = sp.latex(solution1)
         ax2.text(0.4, y, f'${str(solution1)}$', ha="center", va="center", fontsize=20, color="black")
 
@@ -158,14 +157,14 @@ class Expression:
 
         _b = sp.symbols(f'{-self.b}')
         rootD = sp.symbols(f'{sp.sqrt(D_list[0])}')
-        denominator = sp.symbols(f'{2*self.a}')   
+        denominator = sp.symbols(f'{2*self.a}')
 
         solution2 = sp.Eq(x2, (_b + rootD)/(denominator))
         solution2 = sp.latex(solution2)
         ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
         y = y - 0.15
 
-        numerator = sp.symbols(f'{-self.b +(sp.sqrt(D_list[0]))}') 
+        numerator = sp.symbols(f'{-self.b +(sp.sqrt(D_list[0]))}')
         denominator = sp.symbols(f'{2*self.a}')
 
         show_solution2 = sp.Eq(x2, numerator/denominator)
@@ -174,7 +173,6 @@ class Expression:
         y = y - 0.3
 
         solution2 = sp.Eq(x2, (-self.b +(sp.sqrt(D_list[0])))/(2*self.a))
-        x2_list = sp.solve(solution2)
         solution2 = sp.latex(solution2)
         ax3.text(0.4, y, f'${solution2}$', ha="center", va="center", fontsize=20, color="black")
 
@@ -187,14 +185,106 @@ class Expression:
 
         canvas3 = FigureCanvas(fig3)
         canvas_list.append(canvas3)
+
+
+
+        sol1 = (-self.b -(sp.sqrt(D_list[0])))/(2*self.a)
+        sol2 = (-self.b +(sp.sqrt(D_list[0])))/(2*self.a)
+        tftx1 = sp.symbols(f'({sol1})')
+        tftx2 = sp.symbols(f'({sol2})')
+
+
+
+        fig4, ax4 = plt.subplots(num=4)
+        y = 0.9
+
+        ax4.text(0.4, y, f'True-False test of {x1}: ', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.20
+
+        latex_equation = sp.latex(self.equation)
+        ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        tftequation = sp.Eq(self.a*(tftx1)**2 + self.b*(tftx1) + self.c, 0)
+        latex_equation = sp.latex(tftequation)
+        ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+
+        tftax12 = sp.symbols(f'{self.a*sol1**2}')
+
+        tftequation = sp.Eq(tftax12 + self.b*sol1 + self.c, 0)
+        latex_equation = sp.latex(tftequation)
+        ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        zero = sp.symbols('0')
+        tftequation = sp.Eq(zero, 0)
+        latex_equation = sp.latex(tftequation)
+        ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        ax4.set_xlim(0, 1)
+        ax4.set_ylim(0, 1)
+
+    # Remove axes
+        ax4.axis('off')
+
+
+        canvas4 = FigureCanvas(fig4)
+        canvas_list.append(canvas4)
+
+
+
+
+        fig5, ax5 = plt.subplots(num=5)
+        y = 0.9
+
+        ax5.text(0.4, y, f'True-False test of {x2}: ', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.20
+
+        latex_equation = sp.latex(self.equation)
+        ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        tftequation = sp.Eq(self.a*(tftx2)**2 + self.b*(tftx2) + self.c, 0)
+        latex_equation = sp.latex(tftequation)
+        ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+
+        tftax22 = sp.symbols(f'{self.a*sol2**2}')
+
+        tftequation = sp.Eq(tftax22 + self.b*sol2 + self.c, 0)
+        latex_equation = sp.latex(tftequation)
+        ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        zero = sp.symbols('0')
+        tftequation = sp.Eq(zero, 0)
+        latex_equation = sp.latex(tftequation)
+        ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+        y = y - 0.15
+
+        ax5.set_xlim(0, 1)
+        ax5.set_ylim(0, 1)
+
+    # Remove axes
+        ax5.axis('off')
+
+
+        canvas5 = FigureCanvas(fig5)
+        canvas_list.append(canvas5)
+
         return canvas_list
-        
-        
+
+
 
 
     def Factoring(self):
         SOLUTION = []
         SOLUTION = self.solution
+        x1 = sp.symbols('x1')
         if len(SOLUTION)>1:
             self.x1, self.x2 = SOLUTION
             self.p = -(self.x1)
@@ -255,7 +345,7 @@ class Expression:
             ax0.axis('off')
             canvas0 = FigureCanvas(fig0)
             canvas_list.append(canvas0)
-            
+
 
             fig1, ax1 = plt.subplots(num=1)
             y = 0.7
@@ -325,6 +415,94 @@ class Expression:
             canvas2 = FigureCanvas(fig2)
             canvas_list.append(canvas2)
 
+            sol1 = SOLUTION[0]
+            sol2 = SOLUTION[1]
+            tftx1 = sp.symbols(f'({sol1})')
+            tftx2 = sp.symbols(f'({sol2})')
+
+
+
+            fig3, ax3 = plt.subplots(num=3)
+            y = 0.9
+
+            ax3.text(0.4, y, f'True-False test of {x1}: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            latex_equation = sp.latex(self.equation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            tftequation = sp.Eq(self.a*(tftx1)**2 + self.b*(tftx1) + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            tftax12 = sp.symbols(f'{self.a*sol1**2}')
+
+            tftequation = sp.Eq(tftax12 + self.b*sol1 + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            zero = sp.symbols('0')
+            tftequation = sp.Eq(zero, 0)
+            latex_equation = sp.latex(tftequation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax3.set_xlim(0, 1)
+            ax3.set_ylim(0, 1)
+
+        # Remove axes
+            ax3.axis('off')
+
+
+            canvas3 = FigureCanvas(fig3)
+            canvas_list.append(canvas3)
+
+
+
+
+            fig4, ax4 = plt.subplots(num=4)
+            y = 0.9
+
+            ax4.text(0.4, y, f'True-False test of {x2}: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            latex_equation = sp.latex(self.equation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            tftequation = sp.Eq(self.a*(tftx2)**2 + self.b*(tftx2) + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            tftax22 = sp.symbols(f'{self.a*sol2**2}')
+
+            tftequation = sp.Eq(tftax22 + self.b*sol2 + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            zero = sp.symbols('0')
+            tftequation = sp.Eq(zero, 0)
+            latex_equation = sp.latex(tftequation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax4.set_xlim(0, 1)
+            ax4.set_ylim(0, 1)
+
+        # Remove axes
+            ax4.axis('off')
+
+
+            canvas4 = FigureCanvas(fig4)
+            canvas_list.append(canvas4)
+
 
         else:
             SOLUTION = []
@@ -341,7 +519,7 @@ class Expression:
             q = sp.symbols("q")
             x = sp.symbols("x")
 
-        
+
 
             fig0, ax0 = plt.subplots(num=0)
             y = 0.9
@@ -374,7 +552,7 @@ class Expression:
             ax0.axis('off')
             canvas0 = FigureCanvas(fig0)
             canvas_list.append(canvas0)
-            
+
 
             fig1, ax1 = plt.subplots(num=1)
             y = 0.9
@@ -436,6 +614,52 @@ class Expression:
             canvas2 = FigureCanvas(fig2)
             canvas_list.append(canvas2)
 
+            sol1 = self.x
+            tftx1 = sp.symbols(f'({sol1})')
+
+
+
+            fig3, ax3 = plt.subplots(num=3)
+            y = 0.9
+
+
+            ax3.text(0.4, y, 'True-False test of x: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            latex_equation = sp.latex(self.equation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            tftequation = sp.Eq(self.a*(tftx1)**2 + self.b*(tftx1) + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            tftax12 = sp.symbols(f'{self.a*sol1**2}')
+
+            tftequation = sp.Eq(tftax12 + self.b*sol1 + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            zero = sp.symbols('0')
+            tftequation = sp.Eq(zero, 0)
+            latex_equation = sp.latex(tftequation)
+            ax3.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax3.set_xlim(0, 1)
+            ax3.set_ylim(0, 1)
+
+        # Remove axes
+            ax3.axis('off')
+
+
+            canvas3 = FigureCanvas(fig3)
+            canvas_list.append(canvas3)
+
+
         return canvas_list
 
 
@@ -445,7 +669,7 @@ class Expression:
         try:
             EQUATION = self.equation
             x = sp.symbols("x")
-            
+
 
             if self.a != 1:
                 c = self.c/self.a
@@ -541,7 +765,7 @@ class Expression:
             ax1.axis('off')
             canvas1 = FigureCanvas(fig1)
             canvas_list.append(canvas1)
-            
+
 
 
             fig2, ax2 = plt.subplots(num=2)
@@ -561,7 +785,7 @@ class Expression:
             devided = sp.latex(devided)
             ax2.text(0.4, y, f'${devided}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
-            
+
             b22 = sp.symbols(f'{b2**2}')
             devided = sp.Eq(x**2 + b*x + b22, b22 + c*-1)
             devided = sp.latex(devided)
@@ -599,7 +823,7 @@ class Expression:
             ax3.text(0.4, y, f'The roots:', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.2
 
-            first_line = sp.Eq((x1 + b2), (round(float((sp.sqrt(b2**2 - c))),2))*-1) 
+            first_line = sp.Eq((x1 + b2), (round(float((sp.sqrt(b2**2 - c))),2))*-1)
             first_line = sp.latex(first_line)
             ax3.text(0.4, y, f'${first_line}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
@@ -616,7 +840,7 @@ class Expression:
             first_line = sp.latex(first_line)
             ax3.text(0.4, y, f'${first_line}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
-            
+
             if b != 0:
                 calc_x2 = sp.Eq(x2, round(float((sp.sqrt(b2**2 - c)) - b2), 1))
                 calc_x2 = sp.latex(calc_x2)
@@ -631,8 +855,98 @@ class Expression:
             canvas3 = FigureCanvas(fig3)
             canvas_list.append(canvas3)
 
+            
+            sol1 = round(float(-(sp.sqrt(b2**2 - c)) - b2),1)
+            sol2 = round(float((sp.sqrt(b2**2 - c)) - b2), 1)
+            tftx1 = sp.symbols(f'({sol1})')
+            tftx2 = sp.symbols(f'({sol2})')
+
+
+
+            fig4, ax4 = plt.subplots(num=4)
+            y = 0.9
+
+            ax4.text(0.4, y, f'True-False test of {x1}: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            latex_equation = sp.latex(self.equation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            tftequation = sp.Eq(self.a*(tftx1)**2 + self.b*(tftx1) + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            tftax12 = sp.symbols(f'{self.a*sol1**2}')
+
+            tftequation = sp.Eq(tftax12 + self.b*sol1 + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            zero = sp.symbols('0')
+            tftequation = sp.Eq(zero, 0)
+            latex_equation = sp.latex(tftequation)
+            ax4.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax4.set_xlim(0, 1)
+            ax4.set_ylim(0, 1)
+
+        # Remove axes
+            ax4.axis('off')
+
+
+            canvas4 = FigureCanvas(fig4)
+            canvas_list.append(canvas4)
+
+
+
+
+            fig5, ax5 = plt.subplots(num=5)
+            y = 0.9
+
+            ax5.text(0.4, y, f'True-False test of {x2}: ', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.20
+
+            latex_equation = sp.latex(self.equation)
+            ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            tftequation = sp.Eq(self.a*(tftx2)**2 + self.b*(tftx2) + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+
+            tftax22 = sp.symbols(f'{self.a*sol2**2}')
+
+            tftequation = sp.Eq(tftax22 + self.b*sol2 + self.c, 0)
+            latex_equation = sp.latex(tftequation)
+            ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            zero = sp.symbols('0')
+            tftequation = sp.Eq(zero, 0)
+            latex_equation = sp.latex(tftequation)
+            ax5.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
+            y = y - 0.15
+
+            ax5.set_xlim(0, 1)
+            ax5.set_ylim(0, 1)
+
+        # Remove axes
+            ax5.axis('off')
+
+
+            canvas5 = FigureCanvas(fig5)
+            canvas_list.append(canvas5)
+
+
             return canvas_list
-        
+
         except TypeError:
             return False
 
@@ -648,9 +962,9 @@ class Equation (Expression):
         self.type = type
 
 
-    def equation_genr(self, complex_chance=False): 
-        
-        ### 20% for a complex (so far only) inequality   
+    def equation_genr(self, complex_chance=False):
+
+        ### 20% for a complex (so far only) inequality
 
         if (complex_chance) and (random.randint(1,5) == 1):
             self.iscomplex = True
@@ -668,9 +982,9 @@ class Equation (Expression):
 
         ### 80% for a normal (so far only) inequality
                                                       # retrospective by factoring
-        else:       
+        else:
             self.iscomplex = False
-            self.x1 = random.choice([i for i in range(-20,20) if i not in [0]])   
+            self.x1 = random.choice([i for i in range(-20,20) if i not in [0]])
 
             try:
                 if self.type == "complete":
@@ -706,12 +1020,12 @@ class Equation (Expression):
 
         x = sp.symbols("x")
         self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
-        
-        if not self.iscomplex:        
-            self.solution = sp.solve(self.equation, x)       
+
+        if not self.iscomplex:
+            self.solution = sp.solve(self.equation, x)
 
         else:
-            self.solution = sp.EmptySet                 
+            self.solution = sp.EmptySet
 
 
 
@@ -722,7 +1036,7 @@ class Equation (Expression):
 class Inequality (Equation):
     def __init__(self):
         pass
-        
+
 
     def inequality_genr(self):
         self.equation_genr(True)
@@ -822,7 +1136,7 @@ def genr_expression(expression, amount, type=False):
     for problem in problems:
         if expression == "Equation":
             if type == "complete":
-                problem.equation_genr(False)        
+                problem.equation_genr(False)
             elif type == "incomplete":
                 problem.equation_genr(False)
 
