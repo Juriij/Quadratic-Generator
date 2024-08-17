@@ -298,7 +298,7 @@ class Expression:
             x2 = sp.symbols("x2")
 
             fig0, ax0 = plt.subplots(num=0)
-            y = 0.95
+            y = 0.8
 
             canvas_list = []
 
@@ -309,7 +309,7 @@ class Expression:
             self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
             latex_equation = sp.latex(self.equation)
             ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.17
+            y = y - 0.2
 
             spx = sp.symbols(f'{x}')
             spa = sp.symbols(f'{self.a}')
@@ -326,17 +326,21 @@ class Expression:
                 equation1 = sp.Eq((self.a*x**2 + self.b*x + self.c)/self.a, 0)
                 equation1 = sp.latex(equation1)
                 ax0.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
-                y = y - 0.17
+                y = y - 0.15
 
+            spb = sp.symbols(f'{self.b/self.a}')
+            spc = sp.symbols(f'{self.c/self.a}')
 
-            ax0.text(0.4, y, f'${'a = '+ str(1)}$', ha="center", va="center", fontsize=20, color="black")
+            eq_b = sp.Eq(b, spb)
+            eq_b = sp.latex(eq_b)
+            ax0.text(0.4, y, f'${str(eq_b)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ax0.text(0.4, y, f'${'b = '+ str(self.b/self.a)}$', ha="center", va="center", fontsize=20, color="black")
+            eq_c = sp.Eq(c, spc)
+            eq_c = sp.latex(eq_c)
+            ax0.text(0.4, y, f'${str(eq_c)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ax0.text(0.4, y, f'${'c = '+ str(self.c/self.a)}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
 
             ax0.set_xlim(0, 1)
             ax0.set_ylim(0, 1)
@@ -506,9 +510,8 @@ class Expression:
 
         else:
             SOLUTION = []
-            SOLUTION.append(0)
+            SOLUTION = self.solution
             self.x = SOLUTION[0]
-            SOLUTION.pop()
 
             self.p = -(self.x)
             self.q = -(self.x)
@@ -522,28 +525,49 @@ class Expression:
 
 
             fig0, ax0 = plt.subplots(num=0)
-            y = 0.9
+            y = 0.8
 
             canvas_list = []
 
             ax0.text(0.4, y, f'Equation: ', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.20
+            y = y - 0.17
 
             x = sp.symbols("x")
             self.equation = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
             latex_equation = sp.latex(self.equation)
-
             ax0.text(0.4, y, f'${latex_equation}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.20
+            y = y - 0.2
 
-            ax0.text(0.4, y, f'${'a = '+ str(self.a)}$', ha="center", va="center", fontsize=20, color="black")
+            spx = sp.symbols(f'{x}')
+            spa = sp.symbols(f'{self.a}')
+            spb = sp.symbols(f'{self.b}')
+            spc = sp.symbols(f'{self.c}')
+
+
+            if self.a != 1:
+                equation1 = sp.Eq((spa*spx**2 + spb*spx + spc)/spa, 0)
+                equation1 = sp.latex(equation1)
+                ax0.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.15
+
+                equation1 = sp.Eq((self.a*x**2 + self.b*x + self.c)/self.a, 0)
+                equation1 = sp.latex(equation1)
+                ax0.text(0.4, y, f'${str(equation1)}$', ha="center", va="center", fontsize=20, color="black")
+                y = y - 0.15
+
+            spb = sp.symbols(f'{self.b/self.a}')
+            spc = sp.symbols(f'{self.c/self.a}')
+
+            eq_b = sp.Eq(b, spb)
+            eq_b = sp.latex(eq_b)
+            ax0.text(0.4, y, f'${str(eq_b)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ax0.text(0.4, y, f'${'b = '+ str(self.b)}$', ha="center", va="center", fontsize=20, color="black")
+            eq_c = sp.Eq(c, spc)
+            eq_c = sp.latex(eq_c)
+            ax0.text(0.4, y, f'${str(eq_c)}$', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.15
 
-            ax0.text(0.4, y, f'${'c = '+ str(self.c)}$', ha="center", va="center", fontsize=20, color="black")
-            y = y - 0.15
 
             ax0.set_xlim(0, 1)
             ax0.set_ylim(0, 1)
