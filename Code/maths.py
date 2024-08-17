@@ -387,7 +387,10 @@ class Expression:
             ax2.text(0.4, y, f'Solutions: ', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.17
 
-            rootage = sp.Eq((x1+self.p)*(x2+self.q), 0)
+            spp = sp.symbols(f'{self.p}')
+            spq = sp.symbols(f'{self.q}')
+
+            rootage = sp.Eq((x1+spp)*(x2+spq), 0)
             rootage = sp.latex(rootage)
             ax2.text(0.4, y, f'${str(rootage)}$', ha="center", va="center", fontsize=20, color="black")
             y -= 0.2
