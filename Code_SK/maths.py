@@ -722,7 +722,7 @@ class Expression:
             fig1, ax1 = plt.subplots(num=1)
             y = 0.9
 
-            ax1.text(0.4, y, f'Vyorec pre štvorec: ', ha="center", va="center", fontsize=20, color="black")
+            ax1.text(0.4, y, f'Vzorec pre štvorec: ', ha="center", va="center", fontsize=20, color="black")
             y = y - 0.20
 
             _a_ = sp.symbols('a')
