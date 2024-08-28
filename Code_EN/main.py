@@ -335,7 +335,7 @@ class MainWindow(QMainWindow):
                 sol.setFont(QFont("Arial", 13))
                 sol.setText(f'{sp.pretty(self.problems[i].solution)}')
                 sol.adjustSize()
-                sol.move(int(self.Width * 0.47), int(((self.Height) // 12) * (i+1)))
+                sol.move(int(self.Width * 0.55), int(((self.Height) // 12) * (i+1)))
                 sol.show()
 
       
@@ -344,7 +344,7 @@ class MainWindow(QMainWindow):
             self.solution_label.setFont(QFont("Arial", 13))
             self.solution_label.setText(f'{sp.pretty(self.problems[self.eq_dropdown.currentIndex() - 1].solution)}')
             self.solution_label.adjustSize()
-            self.solution_label.move(int(self.Width * 0.47), int(((self.Height) // 12) * (self.eq_dropdown.currentIndex())))
+            self.solution_label.move(int(self.Width * 0.55), int(((self.Height) // 12) * (self.eq_dropdown.currentIndex())))
             self.solution_label.show()
 
             
